@@ -62,7 +62,7 @@ exports.handleLogin = async (req, res) => {
             text: `Seu código de confirmação é: ${verificationCode}`,
         });
 
-        res.clearCookie("tempToken");
+        
         const tempToken = jwt.sign({ email }, SECRET_KEY, { expiresIn: "5m" });
         res.cookie("tempToken", tempToken, { httpOnly: true, secure: true,  maxAge: 5 * 60 * 1000 });
        

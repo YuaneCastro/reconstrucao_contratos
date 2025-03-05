@@ -122,17 +122,9 @@ const verifyVerificationCode = async (email, code) => {
             return { success: false, message: "Usuário não encontrado." };
         }
 
+        
         const { codigo_verificacao, expiracao_codigo } = result.rows[0];
 
-        /*console.log("Código salvo no banco:", codigo_verificacao);
-        console.log("Código digitado:", code);
-        console.log("Tipos:", typeof codigo_verificacao, typeof code);
-        console.log("Os códigos são iguais?", codigo_verificacao === code);
-
-        console.log("Data atual:", new Date());
-        console.log("Data de expiração do código:", expiracao_codigo);
-        console.log("O código expirou?", new Date() > new Date(expiracao_codigo));
-        */
         if (!codigo_verificacao || !expiracao_codigo) {
             return { success: false, message: "Nenhum código registrado." };
         }

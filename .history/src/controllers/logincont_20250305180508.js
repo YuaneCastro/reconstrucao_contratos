@@ -62,7 +62,6 @@ exports.handleLogin = async (req, res) => {
             text: `Seu código de confirmação é: ${verificationCode}`,
         });
 
-        res.clearCookie("tempToken");
         const tempToken = jwt.sign({ email }, SECRET_KEY, { expiresIn: "5m" });
         res.cookie("tempToken", tempToken, { httpOnly: true, secure: true,  maxAge: 5 * 60 * 1000 });
        
@@ -86,10 +85,10 @@ exports.verifyCode = async (req, res) => {
         const email = decoded.email;
 
         const verificationResult = await verifyVerificationCode(email, codigo); 
-        if (verificationResult.success === false) {
+        if (!verificationResult.success) {
             return res.status(400).json({ message: verificationResult.message });
         }
-        console.log("🟡 Resultado da verificação:", verificationResult);
+
         await deleteVerificationCode(email);
 
         const authToken = jwt.sign({ email }, process.env.TOKEN_SECRET, { expiresIn: "30d" });

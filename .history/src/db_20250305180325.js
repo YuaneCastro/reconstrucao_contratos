@@ -132,7 +132,7 @@ const verifyVerificationCode = async (email, code) => {
         console.log("Data atual:", new Date());
         console.log("Data de expiração do código:", expiracao_codigo);
         console.log("O código expirou?", new Date() > new Date(expiracao_codigo));
-        */
+*?
         if (!codigo_verificacao || !expiracao_codigo) {
             return { success: false, message: "Nenhum código registrado." };
         }

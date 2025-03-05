@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken"); 
 const { findUserByEmail } = require('../db');
 
-exports.showtelap = async (req, res) => { 
+exports.showtelap =async (req, res) => { 
     try {
         const token = req.cookies.token;
         if (!token) {
@@ -29,7 +29,6 @@ exports.showtelap = async (req, res) => {
     }
 };
 
-exports.logout = (req, res)=>{
-    res.clearCookie("token", { path: '/' });
-    res.redirect('/login'); // Redireciona para a página de login
+exports.logout=async(req, res)=>{
+
 };

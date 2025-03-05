@@ -29,7 +29,6 @@ exports.showtelap = async (req, res) => {
     }
 };
 
-exports.logout = (req, res)=>{
-    res.clearCookie("token", { path: '/' });
-    res.redirect('/login'); // Redireciona para a página de login
+exports.logout = async (req, res)=>{
+
 };

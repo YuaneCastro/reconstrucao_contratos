@@ -4,6 +4,6 @@ const telapCont = require('../controllers/telacont');
 const verifyToken = require('../authMiddleware');
 
 router.get('/dashboard', verifyToken, telapCont.showtelap);
-router.get('/logout', telapCont.logout);
+rouetr
 
 module.exports = router;
