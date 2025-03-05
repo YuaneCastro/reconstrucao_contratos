@@ -40,7 +40,7 @@ exports.handleLogin = async (req, res) => {
         }
 
         await deleteVerificationCode(email);
-        res.clearCookie("tempToken");
+
         const verificationCode = Math.floor(100000 + Math.random() * 900000);
         const expiration = new Date(Date.now() + 5 * 60 * 1000);
 
