@@ -1,0 +1,33 @@
+async function handleLogin() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const button = document.querySelector('button');
+
+    button.disabled = true;
+
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, senha: password }) // Atenção: Deve ser "senha", e não "password"
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+            console.log("Login bem-sucedido! Redirecionando...");
+            res.json({ success: true, message: "Código de verificação enviado." });
+            // Página de confirmação do código
+        } else {
+            console.error("Erro no login:", data.message);
+            alert(data.message || 'Falha no login');
+        }
+    } catch (error) {
+        console.error("Erro na requisição de login:", error);
+    } finally {
+        button.disabled = false;
+    }
+}
+
+// Associar a função ao botão de login
+document.querySelector('button').addEventListener('click', handleLogin);

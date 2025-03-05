@@ -1,0 +1,54 @@
+const { findOTPByUserId, deleteOTP } = require('../db');
+const jwt = require('jsonwebtoken'); // Biblioteca para gerar o token
+const SECRET_KEY = 'sua_chave_secreta';
+
+exports.showpageconflogin = (req, res) => {
+    res.render('confirmlog');
+};
+
+exports.confirmCodelogin = async (req, res) => {
+    console.log("Recebendo requisição de confirmação:", req.body);
+    
+    const { code } = req.body;
+    const userId = req.session.tempUserId; // Usando a variável da sessão para obter o ID do usuário
+
+    // Verifica se o ID do usuário existe na sessão, se não, a sessão expirou
+    if (!userId) {
+        console.log("Sessão expirada ou não definida.");
+        return res.status(401).json({ message: 'Sessão expirada. Faça login novamente.' });
+    }
+
+    console.log("Verificando código para usuário:", userId);
+
+    try {
+        // Buscar o OTP (código de confirmação) associado ao usuário no banco de dados
+        const otpEntry = await findOTPByUserId(userId);
+
+        // Se o código não for encontrado ou for inválido, retorna erro
+        if (!otpEntry || otpEntry.code !== code) {
+            console.log("Código inválido:", code);
+            return res.status(401).json({ message: 'Código inválido ou expirado.' });
+        }
+
+        console.log("Código correto! Deletando OTP e gerando token...");
+
+        // Remover o OTP após a validação bem-sucedida
+        await deleteOTP(userId);
+
+        // Criar um token JWT com o ID do usuário, sem expiração para a sessão
+        const token = jwt.sign({ userId }, SECRET_KEY, { expiresIn: '24h' }); // O token terá validade de 24 horas
+
+        // Armazenar o token no cookie, de forma segura e sem expiração rápida
+        res.cookie('ctoken', token, { httpOnly: true, secure: true, maxAge: 24 * 60 * 60 * 1000 }); // Expira após 24 horas
+
+        console.log("Redirecionando para dashboard...");
+
+        // Retornar sucesso e redirecionamento para outra página
+        res.json({ success: true, redirect: "/telap" });
+
+    } catch (error) {
+        // Se houver algum erro, exibe a mensagem de erro
+        console.error("Erro na confirmação:", error);
+        res.status(500).json({ message: 'Erro no servidor.' });
+    }
+};

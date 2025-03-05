@@ -1,0 +1,22 @@
+<!-- views/confirm.ejs -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Cadastro</title>
+    <style></style>
+</head>
+<body>
+    <h1>Digite o código de confirmação</h1>
+    <form action="/confirm" method="POST">
+<form method="POST" action="/confirmar">
+    <input type="text" name="confirmationCode" placeholder="Código de Confirmação" required />
+    <button type="submit">Confirmar</button>
+  </form>  
+  <p>Seu código de confirmação foi enviado para o e-mail. Ele expira em <span id="timer"></span>.</p>
+  <form action="/resend-code" method="POST">
+    <button type="submit">Reenviar Código</button>
+</form>
+</body>
+</html>

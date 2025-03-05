@@ -1,0 +1,38 @@
+<!-- views/confirm.ejs -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Cadastro</title>
+    <link rel="stylesheet" href="/assets/js/confirm.css">
+</head>
+<body>
+    <h2>Digite o código de confirmação enviado para seu e-mail</h2>
+    <input type="text" id="otpInput" placeholder="Digite o código">
+    <button onclick="verifyOTP()">Confirmar</button>
+    <p id="message"></p>
+
+    <script>
+        async function verifyOTP() {
+            const code = document.getElementById('otpInput').value;
+            const email = "<%= email %>";
+
+            const response = await fetch('/verifyOTP', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, code })
+            });
+
+            const data = await response.json();
+            document.getElementById('message').innerText = data.message;
+
+            if (response.ok && data.token) {
+                localStorage.setItem("token", data.token); // 🔑 Salva token
+                document.cookie = `token=${data.token}; path=/`; // 🔑 Salva como cookie
+                window.location.href = "/telap"; // 🔄 Redireciona
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+const {addUserToDB, deleteOTP, findOTP} = require('../db');
+const jwt = require('jsonwebtoken'); // Biblioteca para gerar o token
+const secretKey = 'sua_chave_secreta';
+
+exports.showpageconflogin = (req, res) => {
+    res.render('confirmlog');
+};
+
+exports.confirmCodelogin = (req, res) =>{
+    const {confirmCodelogin} = req.body;
+
+exports.confirmCodelogin = async (req, res) => {
+    const { email, senha } = req.body;  
+    console.log(`📥 E-mail recebido: ${email}`);
+    console.log(`🔑 Senha recebida: ${senha}`);
+    };
+    
+    
+    
+};

@@ -1,0 +1,21 @@
+<!-- views/confirm.ejs -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Cadastro</title>
+</head>
+<body>
+    <h1>Digite o código de confirmação</h1>
+    <form action="/confirm" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="confirmationCode">Código de Confirmação:</label>
+        <input type="text" id="confirmationCode" name="confirmationCode" required>
+        
+        <button type="submit">Confirmar</button>
+    </form>
+</body>
+</html>

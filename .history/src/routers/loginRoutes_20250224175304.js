@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+const authController = require('../controllers/logincont');
+
+router.get('/login', authController.showLoginPage);
+router.get('/confirmlog', authController.loginEVerificar);
+
+router.post('/login', authController.handleLogin);
+router.post('/confirmlog', authController.verificarCodigo);
+
+module.exports = router;

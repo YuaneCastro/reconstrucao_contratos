@@ -1,0 +1,18 @@
+<!-- views/confirm.ejs -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Cadastro</title>
+    <link rel="stylesheet" href="/assets/js/confirm.css">
+</head>
+<body>
+    <h1>Confirmar Código</h1>
+    <form action="login" method="POST">
+        <input type="text" id="otpInput" placeholder="Código de Verificação" required>
+        <button type="button" onclick="verifyOTP()">Confirmar</button>
+    </form>
+    <script src="/assets/js/confirmlog.js"></script>
+</body>
+</html>

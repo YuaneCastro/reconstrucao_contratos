@@ -1,0 +1,35 @@
+async function handleLogin() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, senha: password })
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+        document.getElementById('modal').style.display = 'flex';
+    } else {
+        alert(data.message || 'Falha no login');
+    }
+}
+
+async function closeModal() {
+    const code = document.getElementById('codigo').value;
+    const response = await fetch('/api/confirm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code })
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+        document.cookie = `token=${data.token}; path=/; HttpOnly`;
+        alert("Código confirmado! Você está autenticado.");
+        document.getElementById('modal').style.display = 'none';
+    } else {
+        alert(data.message || 'Código inválido ou expirado');
+    }
+}

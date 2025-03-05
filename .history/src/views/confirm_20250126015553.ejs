@@ -1,0 +1,27 @@
+<!-- views/confirm.ejs -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Cadastro</title>
+    <link rel="stylesheet" href="/assets/js/confirm.css">
+</head>
+<body>
+    <h1>Digite o código de confirmação</h1>
+    <form action="/confirm" method="POST">
+        <form method="POST" action="/confirmar">
+            <input type="text" name="confirmationCode" placeholder="Código de Confirmação" required />
+            <button type="submit">Confirmar</button>
+        </form>
+        <p>
+            Seu código de confirmação foi enviado para o e-mail.
+          </p>
+          
+    </form>
+    Erro ao fazer login: Error: data and hash arguments required
+    at Object.compareSync (C:\Users\admin\OneDrive\Ambiente de Trabalho\reconstrucao\node_modules\bcrypt\bcrypt.js:166:15)
+    at exports.handleLogin (C:\Users\admin\OneDrive\Ambiente de Trabalho\reconstrucao\src\controllers\logincont.js:16:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+</body>
+</html>

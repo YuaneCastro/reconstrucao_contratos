@@ -1,0 +1,22 @@
+<!-- views/confirm.ejs -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Cadastro</title>
+    <link rel="stylesheet" href="/assets/js/confirm.css">
+</head>
+<body>
+        <h2>Verificação de Código</h2>
+        <p>Digite o código que foi enviado ao seu e-mail:</p>
+        <form id="codigoForm">
+            <input type="text" id="codigo" placeholder="Código de verificação" required>
+            <button type="submit">Verificar</button>
+        </form>
+        
+        <p id="message"></p>
+
+    <script src="/assets/js/confirmlog.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela Principal</title>
+</head>
+<body>
+    <h1>Bem-vindo à Tela Principal!</h1>
+    <p>Olá, <%= email %>! Você está autenticado.</p>
+    
+    <button onclick="logout()">Sair</button>
+
+    <script src="/assets/">
+        function logout() {
+            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location.href = "/login"; // Redireciona para a página de login
+        }
+    </script>
+</body>
+</html>
