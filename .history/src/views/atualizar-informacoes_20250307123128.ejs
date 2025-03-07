@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Informações</title>
+</head>
+<body>
+    <h2>Atualizar Informações</h2>
+    <form action="/atualizar-informacoes" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" value="<%= user.nome %>">
+        
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="<%= user.email %>">
+        
+        <label for="senha">Nova Senha:</label>
+        <input type="password" name="senha" id="senha">
+
+        <button type="submit">Atualizar</button>
+    </form>
+</body>
+</html>
