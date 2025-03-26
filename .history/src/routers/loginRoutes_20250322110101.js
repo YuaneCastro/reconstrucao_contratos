@@ -1,0 +1,14 @@
+const express = require('express');
+const router = express.Router();
+const authController = require('../controllers/logincont');
+// encarregados
+router.get('/login', authController.tela_login_ecarregados);
+router.get('/confirmlog', authController.showVerifyCodePage);
+
+router.post('/login', authController.handleLogin);
+router.post('/confirmlog', authController.verifyCode);
+
+
+//complexo escolar
+
+module.exports = router;

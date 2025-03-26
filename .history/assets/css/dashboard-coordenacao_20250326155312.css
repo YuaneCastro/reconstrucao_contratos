@@ -1,0 +1,62 @@
+ body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilo da Top Bar */
+        .top-bar {
+            background: #2c3e50;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+        }
+        .top-bar p {
+            margin: 0;
+            cursor: pointer;
+        }
+        .top-bar p:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilo da Tabela */
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #2c3e50;
+            color: white;
+        }
+        tr:hover {
+            background: #ecf0f1;
+        }
+        .actions {
+            text-align: center;
+        }
+        .edit-btn {
+            color: blue;
+            cursor: pointer;
+        }
+        .delete-btn {
+            color: red;
+            cursor: pointer;
+        }

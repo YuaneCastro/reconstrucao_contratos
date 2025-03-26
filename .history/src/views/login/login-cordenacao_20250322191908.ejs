@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Coordenação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bem-vindo à tela de login da Coordenação</h1>
+    <p>Para garantir a segurança, clique no botão abaixo para enviarmos um código de confirmação ao email da Coordenação.</p>
+
+    <button id="enviarBtn">Enviar</button>
+
+    <br><br>
+
+    <input type="text" id="otpInput" name="codigo" placeholder="Código de Verificação" required disabled>
+    <button id="confirmarBtn" disabled>Confirmar</button>
+    <script>
+        document.getElementById("enviarBtn").addEventListener("click", async function() {
+            const enviarBtn = this;
+            const otpInput = document.getElementById("otpInput");
+            const confirmarBtn = document.getElementById("confirmarBtn");
+
+            // Desabilita o botão de enviar
+            enviarBtn.disabled = true;
+            enviarBtn.innerText = "Enviando...";
+
+            // Chama o backend para enviar o e-mail
+            try {
+                const response = await fetch("/login-cordenacao", { method: "POST" });
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert("Código enviado com sucesso!");
+                    
+                    // Habilita o input e botão de confirmar
+                    otpInput.disabled = false;
+                    enviarBtn.innerText = "Código Enviado";
+                } else {
+                    alert("Erro ao enviar código.");
+                    enviarBtn.disabled = false;
+                    enviarBtn.innerText = "Enviar";
+                }
+            } catch (error) {
+                alert("Erro ao enviar código.");
+                enviarBtn.disabled = false;
+                enviarBtn.innerText = "Enviar";
+            }
+        });
+
+        // Habilita o botão "Confirmar" somente quando algo for digitado no input
+        document.getElementById("otpInput").addEventListener("input", function() {
+            document.getElementById("confirmarBtn").disabled = this.value.trim() === "";
+        });
+    </script>
+</body>
+</html>
