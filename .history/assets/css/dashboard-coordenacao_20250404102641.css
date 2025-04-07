@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    font-family: Arial, sans-serif;
+    background-color: #ecf0f1;
+}
+
+/* Top Bar */
+.top-bar {
+    width: 100%;
+    background: #2c3e50;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 50px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.top-bar .clickable {
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.top-bar .clickable:hover {
+    color: #f39c12;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #34495e;
+    color: white;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    padding-top: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+.sidebar ul li:hover {
+    background: #1abc9c;
+    transform: scale(1.05);
+}
+
+/* Área Principal */
+.main-content {
+    margin-left: 250px;
+    margin-top: 50px;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Seções Ocultas */
+.section {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.section.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilo da Tabela */
+.container {
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #2c3e50;
+    color: white;
+}
+
+tr:hover {
+    background: #bdc3c7;
+}
+
+.actions {
+    text-align: center;
+}
+
+.edit-btn, .delete-btn {
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.edit-btn {
+    color: white;
+    background: #2980b9;
+}
+
+.edit-btn:hover {
+    background: #1f6690;
+}
+
+.delete-btn {
+    color: white;
+    background: #c0392b;
+}
+
+.delete-btn:hover {
+    background: #a93226;
+}
+.container-cadastro {
+    max-width: 600px;
+    margin: 30px auto;
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.container-cadastro h2, .container-cadastro h3 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #34495e;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+}
+
+.btn-cadastrar {
+    width: 100%;
+    padding: 12px;
+    background: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-cadastrar:hover {
+    background: #34495e;
+}
+#botao_cadastro:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.submenu {
+    display: none;
+    padding-left: 15px;
+    background: #466e97
+}
+
+#logout-button

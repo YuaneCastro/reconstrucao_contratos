@@ -1,0 +1,122 @@
+function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+    });
+    document.getElementById(sectionId).classList.add('active');
+}
+
+document.getElementById('logout-button')?.addEventListener('click', () => {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.location.href = '/login-cordenacao';
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const telefoneInput = document.getElementById("telefone");
+    const classeSelect = document.getElementById("classe");
+    const form = document.getElementById("form-estudante");
+    const botaoCadastro = document.getElementById("botao_cadastro");
+
+    telefoneInput.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "");
+        validarCampos();
+    });
+
+    classeSelect.addEventListener("change", function () {
+        verificarClasse();
+        validarCampos();
+    });
+
+    form.querySelectorAll("input, select").forEach((campo) => {
+        campo.addEventListener("input", validarCampos);
+        campo.addEventListener("change", validarCampos);
+    });
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        if (!validarFormulario()) {
+            return;
+        }
+
+        const formData = new FormData(this);
+        const dados = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch('/cadastro', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dados)
+            });
+
+            const resultado = await response.json();
+
+            if (resultado.sucesso) {
+                document.getElementById('mensagem').textContent = "Estudante cadastrado com sucesso!";
+                document.getElementById('mensagem').style.color = "green";
+                form.reset();
+                validarCampos();
+                setTimeout(() => {
+                    window.location.href = "/dashboard-cordenacao";
+                }, 2000);
+            } else {
+                document.getElementById('mensagem').textContent = "Erro: " + resultado.motivo;
+                document.getElementById('mensagem').style.color = "red";
+            }
+        } catch (error) {
+            if (sucessoCadastro) {
+                console.error('Erro ao cadastrar estudante:', error);
+                document.getElementById('mensagem').textContent = "O cadastro foi realizado, mas ocorreu um problema após a execução.";
+                document.getElementById('mensagem').style.color = "orange";
+            } else {
+                document.getElementById('mensagem').textContent = "Erro ao conectar ao servidor.";
+                document.getElementById('mensagem').style.color = "red";
+            }
+        }
+    });
+});
+
+function verificarClasse() {
+    const classeSelecionada = document.getElementById("classe").value;
+    const cursoContainer = document.getElementById("cursoContainer");
+    const curso = document.getElementById("curso");
+
+    if (["10ª Classe", "11ª Classe", "12ª Classe", "13ª Classe"].includes(classeSelecionada)) {
+        cursoContainer.style.display = "block";
+        curso.setAttribute("required", "true");
+    } else {
+        cursoContainer.style.display = "none";
+        curso.removeAttribute("required");
+        curso.value = "";
+    }
+}
+
+function validarFormulario() {
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("encarregado_email").value.trim();
+    const telefone = document.getElementById("telefone").value.trim();
+    const classeSelecionada = document.getElementById("classe").value;
+    const curso = document.getElementById("curso").value;
+
+    if (!nome || !email || !telefone || !classeSelecionada) {
+        return false;
+    }
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+        return false;
+    }
+
+    if (telefone.length < 9) {
+        return false;
+    }
+
+    if (["10ª Classe", "11ª Classe", "12ª Classe", "13ª Classe"].includes(classeSelecionada) && !curso) {
+        return false;
+    }
+
+    return true;
+}
+
+function validarCampos() {
+    const botaoCadastro = document.getElementById("botao_cadastro");
+    botaoCadastro.disabled = !validarFormulario();
+}
