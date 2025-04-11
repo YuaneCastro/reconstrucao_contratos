@@ -1,0 +1,107 @@
+-- Tabela: public.encarregados
+CREATE TABLE IF NOT EXISTS public.encarregados
+(
+    id integer NOT NULL DEFAULT nextval('encarregados_id_seq'::regclass),
+    nome character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    email character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    telefone text COLLATE pg_catalog."default",
+    senha_hash text COLLATE pg_catalog."default",
+    codigo_verificacao character varying(255) COLLATE pg_catalog."default",
+    codigo_expiracao timestamp without time zone,
+    criado_em timestamp without time zone DEFAULT now(),
+    atualizado_em timestamp without time zone DEFAULT now(),
+    role character varying(20) COLLATE pg_catalog."default",
+    CONSTRAINT encarregados_pkey PRIMARY KEY (id),
+    CONSTRAINT encarregados_email_key UNIQUE (email),
+    CONSTRAINT encarregados_nome_check CHECK (length(nome::text) > 2),
+    CONSTRAINT encarregados_email_check CHECK (email::text ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'::text),
+    CONSTRAINT encarregados_telefone_check CHECK (telefone ~ '^\+?\d{7,15}$'::text)
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.encarregados
+    OWNER to postgres;
+
+-- Tabela: public.estudantes
+CREATE TABLE IF NOT EXISTS public.estudantes
+(
+    id integer NOT NULL DEFAULT nextval('estudantes_id_seq'::regclass),
+    nome character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    data_nascimento date NOT NULL,
+    classe character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    turma character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    encarregado_id integer NOT NULL,
+    curso character varying(255) COLLATE pg_catalog."default",
+    CONSTRAINT estudantes_pkey PRIMARY KEY (id),
+    CONSTRAINT estudantes_encarregado_id_fkey FOREIGN KEY (encarregado_id)
+        REFERENCES public.encarregados (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT estudantes_nome_check CHECK (length(nome::text) > 2),
+    CONSTRAINT estudantes_data_nascimento_check CHECK (data_nascimento < now())
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.estudantes
+    OWNER to postgres;
+
+-- Tabela: public.log_atividades
+CREATE TABLE IF NOT EXISTS public.log_atividades
+(
+    id integer NOT NULL DEFAULT nextval('log_atividades_id_seq'::regclass),
+    encarregado_id integer NOT NULL,
+    estudante_id integer,
+    acao character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    data_hora timestamp without time zone DEFAULT now(),
+    detalhes text COLLATE pg_catalog."default",
+    CONSTRAINT log_atividades_pkey PRIMARY KEY (id),
+    CONSTRAINT log_atividades_encarregado_id_fkey FOREIGN KEY (encarregado_id)
+        REFERENCES public.encarregados (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL,
+    CONSTRAINT log_atividades_estudante_id_fkey FOREIGN KEY (estudante_id)
+        REFERENCES public.estudantes (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.log_atividades
+    OWNER to postgres;
+
+-- Tabela: public.logins_coordenacao
+CREATE TABLE IF NOT EXISTS public.logins_coordenacao
+(
+    id integer NOT NULL DEFAULT nextval('logins_coordenacao_id_seq'::regclass),
+    email character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    ip character varying(45) COLLATE pg_catalog."default" NOT NULL,
+    codigo_otp character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    usado boolean DEFAULT false,
+    data_envio timestamp without time zone DEFAULT now(),
+    data_login timestamp without time zone,
+    role character varying(20) COLLATE pg_catalog."default",
+    CONSTRAINT logins_coordenacao_pkey PRIMARY KEY (id)
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.logins_coordenacao
+    OWNER to postgres;
+
+-- Tabela: public.tokens_redefinicao
+CREATE TABLE IF NOT EXISTS public.tokens_redefinicao
+(
+    id integer NOT NULL DEFAULT nextval('tokens_redefinicao_id_seq'::regclass),
+    encarregado_id integer NOT NULL,
+    token text COLLATE pg_catalog."default" NOT NULL,
+    expiracao timestamp without time zone NOT NULL,
+    CONSTRAINT tokens_redefinicao_pkey PRIMARY KEY (id),
+    CONSTRAINT tokens_redefinicao_encarregado_id_fkey FOREIGN KEY (encarregado_id)
+        REFERENCES public.encarregados (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.tokens_redefinicao
+    OWNER to postgres;
+
