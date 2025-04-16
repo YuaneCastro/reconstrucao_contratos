@@ -1,0 +1,25 @@
+.toggle-section h2 {
+    background-color: #e3ecf7;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #2d5c9f;
+    transition: background-color 0.3s;
+  }
+  
+  .toggle-section h2:hover {
+    background-color: #d1e0f0;
+  }
+  
+  .toggle-section .content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.3s;
+    padding: 0 10px;
+  }
+  
+  .toggle-section.active .content {
+    max-height: 500px; /* ou algo alto o suficiente */
+    padding: 10px;
+  }
+  

@@ -1,0 +1,87 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Corpo geral */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+  }
+  
+  /* Cabeçalho */
+  header {
+    background-color: #4a90e2;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Navegação */
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+    margin-bottom: 20px;
+    padding: 0;
+  }
+  
+  nav ul li {
+    flex: 1 1 auto;
+  }
+  
+  nav ul li a {
+    display: block;
+    background-color: #e3ecf7;
+    color: #2d5c9f;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+  }
+  
+  nav ul li a:hover {
+    background-color: #d1e0f0;
+  }
+  
+  /* Conteúdo principal */
+  main section {
+    background-color: white;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+  
+  main h2 {
+    color: #4a90e2;
+    margin-bottom: 10px;
+  }
+  
+  /* Rodapé */
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #888;
+  }
+  
+  /* Responsivo */
+  @media (max-width: 600px) {
+    nav ul {
+      flex-direction: column;
+    }
+  
+    nav ul li {
+      flex: 1 1 100%;
+    }
+  }
+  

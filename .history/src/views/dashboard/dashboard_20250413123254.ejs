@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel do Encarregado</title>
+  <link rel="stylesheet" href="/assets/css/dashboard.css">
+</head>
+<body>
+  <header>
+    <h1>Bem-vindo(a), Encarregado(a)</h1>
+  </header>
+
+  <section class="toggle-section">
+    <h2 onclick="toggleSection(this)">📋 Meus Estudantes</h2>
+    <div class="content">
+      <ul>
+        <li>Maria Silva - 8º ano</li>
+        <li>João Silva - 5º ano</li>
+      </ul>
+    </div>
+  </section>
+  
+  <section class="toggle-section">
+    <h2 onclick="toggleSection(this)">📜 Log de Atividades</h2>
+    <div class="content">
+      <ul>
+        <li>Assinou contrato de matrícula em 10/03/2025</li>
+        <li>Visualizou comunicado "Reunião de Pais"</li>
+      </ul>
+    </div>
+  </section>
+  
+  <section class="toggle-section">
+    <h2 onclick="toggleSection(this)">📄 Contratos</h2>
+    <div class="content">
+      <p><a href="#">Assinar contrato de transporte escolar</a></p>
+    </div>
+  </section>
+  
+    <p>&copy; 2025 Escola Exemplo</p>
+  </footer>
+  <script src="/assets/js/dashboard.js"></script>
+</body>
+</html>

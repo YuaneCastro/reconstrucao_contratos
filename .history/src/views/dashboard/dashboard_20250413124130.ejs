@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel do Encarregado</title>
+  <link rel="stylesheet" href="/assets/css/dashboard.css">
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <h2>🎓 Painel</h2>
+      <ul>
+        <li onclick="showSection('estudantes')">👨‍👩‍👧 Meus Estudantes</li>
+        <li onclick="showSection('contratos')">📜 Contratos</li>
+        <li onclick="showSection('log')">📘 Log de Atividades</li>
+        <li onclick="showSection('normas')">📚 Normas</li>
+        <li onclick="showSection('ajuda')">❓ Ajuda</li>
+        <li onclick="showSection('contato')">📞 Contato</li>
+      </ul>
+    </nav>
+
+    <div class="main">
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="user-info">
+          <span>Olá, Sr(a). Silva!</span>
+        </div>
+        <div class="topbar-actions">
+          <button onclick="showSection('ajuda')">❔ Ajuda</button>
+          <button>🔔</button>
+          <button class="logout">Sair</button>
+        </div>
+      </header>
+
+      <!-- Conteúdo dinâmico -->
+      <main class="content">
+        <section id="estudantes" class="section active">
+          <h3>Meus Estudantes</h3>
+          <ul>
+            <li>Maria Silva – 8º ano</li>
+            <li>João Silva – 5º ano</li>
+          </ul>
+        </section>
+
+        <section id="contratos" class="section">
+          <h3>Contratos Pendentes</h3>
+          <p><a href="#">Assinar contrato de transporte escolar</a></p>
+        </section>
+
+        <section id="log" class="section">
+          <h3>Log de Atividades</h3>
+          <ul>
+            <li>✅ Assinou matrícula (10/03/2025)</li>
+            <li>👀 Visualizou comunicado: Reunião de Pais</li>
+          </ul>
+        </section>
+
+        <section id="normas" class="section">
+          <h3>Normas Escolares</h3>
+          <p><a href="#">Clique aqui para ver todas as normas da escola</a></p>
+        </section>
+
+        <section id="ajuda" class="section">
+          <h3>Ajuda</h3>
+          <p>Use o menu lateral para navegar. Clique em "Contratos" para assinar documentos, e em "Estudantes" para ver seus filhos.</p>
+        </section>
+
+        <section id="contato" class="section">
+          <h3>Contato</h3>
+          <p>📞 (99) 99999-9999</p>
+          <p>📧 contato@escola.com</p>
+          <p>📍 Rua das Flores, 123 – Centro</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  
+  <script src="/assets/js/dashboard.js"></script>
+</body>
+</html>

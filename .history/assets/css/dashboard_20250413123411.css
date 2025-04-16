@@ -1,0 +1,48 @@
+.accordion {
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  
+  .accordion-toggle {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 16px;
+    text-align: left;
+    background-color: #e6f0fc;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #2d5c9f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease;
+  }
+  
+  .accordion-toggle:hover {
+    background-color: #d4e7fb;
+  }
+  
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #f9fbfe;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 20px;
+  }
+  
+  .accordion-content.open {
+    padding: 15px 20px;
+  }
+  
+  .accordion .arrow {
+    transition: transform 0.3s ease;
+  }
+  
+  .accordion .accordion-toggle.active .arrow {
+    transform: rotate(180deg);
+  }
+  

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel do Encarregado</title>
+  <link rel="stylesheet" href="/assets/css/dashboard.css">
+</head>
+<body>
+  <section class="accordion">
+    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+      👨‍👩‍👧 Meus Estudantes <span class="arrow">▼</span>
+    </button>
+    <div class="accordion-content">
+      <ul>
+        <li>Maria Silva – 8º ano</li>
+        <li>João Silva – 5º ano</li>
+      </ul>
+    </div>
+  </section>
+  
+  <section class="accordion">
+    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+      📜 Log de Atividades <span class="arrow">▼</span>
+    </button>
+    <div class="accordion-content">
+      <ul>
+        <li>✅ Assinou contrato de matrícula (10/03/2025)</li>
+        <li>👀 Visualizou comunicado: Reunião de Pais</li>
+      </ul>
+    </div>
+  </section>
+  
+  <section class="accordion">
+    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+      📄 Contratos <span class="arrow">▼</span>
+    </button>
+    <div class="accordion-content">
+      <p>Assinaturas pendentes:</p>
+      <ul>
+        <li><a href="#">Contrato de transporte escolar</a></li>
+      </ul>
+    </div>
+  </section>
+  
+  <section class="accordion">
+    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+      📚 Normas Escolares <span class="arrow">▼</span>
+    </button>
+    <div class="accordion-content">
+      <p>Respeito, pontualidade e participação são valores essenciais. <a href="#">Ver documento completo</a>.</p>
+    </div>
+  </section>
+  
+  <section class="accordion">
+    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+      ❓ Ajuda: Como funciona o sistema? <span class="arrow">▼</span>
+    </button>
+    <div class="accordion-content">
+      <p>Você pode visualizar os comunicados, assinar contratos digitalmente e acompanhar seus filhos facilmente.</p>
+    </div>
+  </section>
+  
+  <section class="accordion">
+    <button class="accordion-toggle" onclick="toggleAccordion(this)">
+      📞 Contatos e Localização <span class="arrow">▼</span>
+    </button>
+    <div class="accordion-content">
+      <p>Telefone: (99) 99999-9999</p>
+      <p>Email: contato@escola.com</p>
+      <p>Endereço: Rua das Flores, 123 – Centro</p>
+    </div>
+  </section>  
+  <script src="/assets/js/dashboard.js"></script>
+</body>
+</html>
