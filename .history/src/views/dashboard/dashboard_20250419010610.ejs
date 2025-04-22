@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel do Encarregado</title>
+  <link rel="stylesheet" href="/assets/css/dashboard.css">
+</head>
+<body>
+  <div class="container">
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+      <div>
+        <h2>🎓 Escola</h2>
+        <ul>
+          <li onclick="showSection('estudantes')">👨‍👩‍👧 Estudantes</li>
+          <li onclick="showSection('contratos')">📜 Contratos</li>
+          <li onclick="showSection('log')">📘 Atividades</li>
+          <li onclick="showSection('normas')">📚 Normas</li>
+          <li onclick="showSection('ajuda')">❓ Ajuda</li>
+        </ul>
+      </div>
+
+      <div class="footer">
+        <p><strong>Contato:</strong></p>
+        <p>📞 (99) 99999-9999</p>
+        <p>📧 contato@escola.com</p>
+        <p>📍 Rua das Flores, 123 – Centro</p>
+      </div>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main">
+      <!-- TOPBAR -->
+      <div class="topbar">
+        <div class="greeting">Olá, <strong><%= nome %></strong>!</div>
+        <div class="actions">
+          <button id="logout-button" onclick="informar()">Sair</button>
+        </div>
+      </div>
+
+      <!-- CONTEÚDO DINÂMICO -->
+      <div class="content">
+        <div id="log" class="section active">
+          
+        </div>
+        <div id="estudantes" class="section">
+          <h3>Estudantes Representados</h3>
+          <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Classe</th>
+                    <th>Turma</th>
+                    <th>Curso</th>
+                    <th>Data Nascimento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(estudantes.length > 0){ %>
+                    <% estudantes.forEach(student =>{  %>
+                        <tr>
+                          <td><%= student.nome %></td>
+                          <td><%= student.classe %></td>
+                          <td><%= student.turma %></td>
+                          <td><%= student.curso %></td>
+                          <td><%= new Date(student.data_nascimento).toISOString().split('T')[0] %></td>
+                        </tr>
+                    <% });  %>   
+                <% }else{ %>
+                    <tr>
+                        <td colspan="8">Nenhuma estudante encontrado.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        </div>
+
+        <div id="contratos" class="section">
+          <h3>Documentos</h3>
+          <% if(documentos.length > 0){ %>
+            <div class="documentos-grid">
+              <% documentos.forEach(doc => { %>
+                <div class="documento-card">
+                  <h4><%= doc.titulo %></h4>
+                  <p><strong>Tipo:</strong> <%= doc.tipo %></p>
+                  <p><strong>Descrição:</strong> <%= doc.descricao %></p>
+                  <p><strong>Data de criação:</strong> <%= new Date(doc.data_emissao).toISOString().split('T')[0] %></p>
+                  <p><strong>Data de Expiração:</strong>
+                    <%= doc.data_expiracao ? new Date(doc.data_expiracao).toISOString().split('T')[0] : 'Não definida' %>
+                  </p>
+                                   
+                  <button onclick="assinarDocumento('<%= doc.id %>')">📄 Ver e Assinar</button>
+                </div>
+              <% }); %>
+            </div>
+          <% } else { %>
+            <p>Nenhum contrato disponível.</p>
+          <% } %>
+        </div>
+        <div id="log" class="section">
+          <h3>Registro de Atividades</h3>
+          <table>
+            <thead>
+                <tr>
+                    <th>Açao</th>
+                    <th>detalhes</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(log_atividade.length > 0){ %>
+                    <% log_atividade.forEach(activity =>{  %>
+                        <tr>
+                            <td><%= activity.acao %></td>
+                            <td><%= activity.detalhes %></td>
+                            <td><%= new Date(activity.data_hora).toISOString().split('T')[0] %></td>
+                        </tr>
+                    <% });  %>   
+                <% }else{ %>
+                    <tr>
+                        <td colspan="8">Nenhuma acao encontrada.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        </div>
+
+        <div id="normas" class="section">
+          <h3>Normas da Escola</h3>
+          <p>Consulte o regulamento interno <a href="#">clicando aqui</a>.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <script src="/assets/js/dashboard.js"></script>
+</body>
+</html>

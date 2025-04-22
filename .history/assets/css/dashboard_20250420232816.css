@@ -1,0 +1,288 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  body {
+    display: flex;
+    height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  .container {
+    display: flex;
+    width: 100%;
+  }
+  
+  /* SIDEBAR */
+  .sidebar {
+    width: 250px;
+    background-color: #004d3c; /* Verde escuro */
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+  }
+  
+  .sidebar h2 {
+    color: #bfa046;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+  }
+  
+  .sidebar ul li {
+    padding: 10px 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .sidebar ul li:hover {
+    background-color: rgba(191, 160, 70, 0.2); /* #bfa046 com transparência */
+  }
+  
+  .sidebar .footer {
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+  
+  /* MAIN CONTENT */
+  .main {
+    margin-left: 250px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  /* TOPBAR */
+  .topbar {
+    height: 60px;
+    background-color: #007555; /* Verde médio */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .topbar .greeting {
+    font-size: 1.1rem;
+  }
+  
+  .topbar .actions button {
+    border: none;
+    background-color: #bfa046;
+    color: white;
+    padding: 8px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .topbar .actions button:hover {
+    background-color: #a88d3e;
+  }
+  /* CONTENT */
+  .content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+  }
+  
+  .section {
+    display: none;
+  }
+  
+  .section.active {
+    display: block;
+  }
+  
+  .section h3 {
+    margin-bottom: 10px;
+    color: #004d3c;
+  }
+  
+  .section p,
+  .section ul {
+    color: #333;
+  }
+  /* --- Código original preservado acima --- */
+  .documentos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  
+  .documento-card {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 16px;
+    width: 280px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .documento-card h4 {
+    margin-bottom: 10px;
+  }
+  
+  .documento-card p {
+    margin: 6px 0;
+  }
+  
+  .documento-card button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .documento-card button:hover {
+    background-color: #45a049;
+  }
+  
+/* Nova estilização para o formulário de contrato */
+/* Estilo geral das tabelas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Cabeçalho da tabela */
+table thead {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+table thead th {
+  padding: 12px 16px;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+/* Linhas do corpo */
+table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Zebra stripe */
+table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* Hover nas linhas */
+table tbody tr:hover {
+  background-color: #f0f8ff;
+}
+
+/* Célula vazia em colspan */
+table tbody tr td[colspan] {
+  text-align: center;
+  font-style: italic;
+  color: #999;
+}
+
+/* Responsividade (opcional) */
+@media screen and (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
+  }
+
+  tbody td {
+    position: relative;
+    padding-left: 50%;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 16px;
+    font-weight: bold;
+    color: #666;
+  }
+}
+/*codigo de atualizar o contrato*/
+#conteudoContrato {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  font-family: 'Georgia', serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  border-radius: 8px;
+}
+
+#conteudoContrato h4 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #222;
+}
+
+#conteudoContrato p {
+  margin: 12px 0;
+}
+
+#conteudoContrato strong {
+  display: inline-block;
+  min-width: 150px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Botão Voltar */
+#visualizacaoContrato button {
+  margin-top: 30px;
+  background-color: #444;
+  color: #fff;
+  padding: 10px 20px;
+  font-family: 'Arial', sans-serif;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#visualizacaoContrato button:hover {
+  background-color: #333;
+}
