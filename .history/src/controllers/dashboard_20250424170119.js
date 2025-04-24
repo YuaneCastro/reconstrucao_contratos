@@ -6,6 +6,7 @@ const nodemailer = require('nodemailer');
 
 exports.telaerror = async (req,res) => {
     const message = req.query.message;
+    console.log(message); 
     res.render('dashboard/Telaerro', { message });
 };
 

@@ -55,6 +55,7 @@ const findEmail = async (email) => {
 const deleteVerificationCode = async (email) => {
     try {
         await pool.query("UPDATE encarregados SET codigo_verificacao = NULL, codigo_expiracao = NULL WHERE email = $1", [email]);
+        console.log("Código de verificação removido com sucesso para o email:", email);
     } catch (error) {
         console.error("Erro ao deletar código de verificação:", error);
         throw error;
@@ -83,6 +84,7 @@ const verifyVerificationCode = async (email, code) => {
         );
 
         if (result.rows.length === 0) {
+            console.log("❌ Email não encontrado.");
             return { success: false, message: "Usuário não encontrado." };
         }
 

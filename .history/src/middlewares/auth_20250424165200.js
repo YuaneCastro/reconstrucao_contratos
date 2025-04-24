@@ -5,13 +5,13 @@ function authenticateToken(req, res, next) {
 
     if (!token) {
         const message = "Você precisa fazer login para acessar esta página.";
-        return res.redirect("/Telaerro?message=" + encodeURIComponent(message)); //  Adicionando "return" para evitar erro
+        return res.redirect("/Telaerro?message=" + encodeURIComponent(message)); // 🔥 Adicionando "return" para evitar erro
     }
 
     jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
         if (err) {
-            const message = "Sua sessão expirou. Faça login novamente.";
-            return res.redirect("/Telaerro?message=" + encodeURIComponent(message));//  Aqui também precisa do "return"
+            const message = "Você precisa fazer login para acessar esta página.";
+            return res.redirect("/Telaerro?message=Sua sessão expirou. Faça login novamente."); // 🔥 Aqui também precisa do "return"
         }
         req.user = user; // Adiciona o usuário decodificado ao objeto req
         next();
