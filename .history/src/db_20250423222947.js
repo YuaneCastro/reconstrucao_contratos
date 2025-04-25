@@ -83,6 +83,7 @@ const verifyVerificationCode = async (email, code) => {
         );
 
         if (result.rows.length === 0) {
+            console.log("❌ Email não encontrado.");
             return { success: false, message: "Usuário não encontrado." };
         }
 

@@ -55,6 +55,7 @@ const findEmail = async (email) => {
 const deleteVerificationCode = async (email) => {
     try {
         await pool.query("UPDATE encarregados SET codigo_verificacao = NULL, codigo_expiracao = NULL WHERE email = $1", [email]);
+        console.log("Código de verificação removido com sucesso para o email:", email);
     } catch (error) {
         console.error("Erro ao deletar código de verificação:", error);
         throw error;
@@ -83,6 +84,7 @@ const verifyVerificationCode = async (email, code) => {
         );
 
         if (result.rows.length === 0) {
+            console.log("❌ Email não encontrado.");
             return { success: false, message: "Usuário não encontrado." };
         }
 
@@ -500,11 +502,6 @@ const guardar_documento_e_enviar = async (tipo, titulo, descricao, especificacoe
                      ON CONFLICT DO NOTHING`,
                     [documentoId, row.id, estado]
                 );
-                await pool.query(
-                    `INSERT INTO log_atividades (encarregado_id, acao, detalhes)
-                     VALUES ($1, $2, $3)`,
-                    [row.id, 'Envio de documento', `Documento '${titulo}' do tipo '${tipo}' enviado para encarregado (todos)`]
-                );
             }
         } else {
             const insertCategoriaQuery = `
@@ -545,16 +542,6 @@ const guardar_documento_e_enviar = async (tipo, titulo, descricao, especificacoe
                          VALUES ($1, $2, $3, $4)
                          ON CONFLICT DO NOTHING`,
                         [documentoId, r.encarregado_id, r.estudante_id, estado]
-                    );
-                    await pool.query(
-                        `INSERT INTO log_atividades (encarregado_id, estudante_id, acao, detalhes)
-                         VALUES ($1, $2, $3, $4)`,
-                        [
-                            r.encarregado_id,
-                            r.estudante_id,
-                            'Envio de documento',
-                            `Documento '${titulo}' do tipo '${tipo}' enviado para curso=${curso || 'todos'}, classe=${classe}, turma=${turma || 'todos'}`
-                        ]
                     );
                 }
             }

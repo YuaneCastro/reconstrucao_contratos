@@ -5,7 +5,7 @@ function authenticateToken(req, res, next) {
 
     if (!token) {
         const message = "Você precisa fazer login para acessar esta página.";
-        return res.redirect("/Telaerro?message=" + encodeURIComponent(message)); //  Adicionando "return" para evitar erro
+        return res.redirect("/Telaerro?message=" + encodeURIComponent(message)); // 🔥 Adicionando "return" para evitar erro
     }
 
     jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {

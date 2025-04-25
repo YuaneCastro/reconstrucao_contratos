@@ -6,6 +6,7 @@ const nodemailer = require('nodemailer');
 
 exports.telaerror = async (req,res) => {
     const message = req.query.message;
+    console.log(message); 
     res.render('dashboard/Telaerro', { message });
 };
 
@@ -31,6 +32,7 @@ exports.dashboard_cordenacao = async(req,res) =>{
         res.render("dashboard/dashboard-cordenacao", { email: user.email, logs, encarregados, estudantes, coordenacao, comunicado, contrato});
     } catch (error) {
         console.error("Erro ao carregar a dashboard:", error);
+        console.log ("aqui")
         return res.redirect("/Telaerro?message=" + encodeURIComponent("Precisa fazer login para acassar esta tela."));
 
     }
