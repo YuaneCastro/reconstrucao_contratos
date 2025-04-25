@@ -18,6 +18,6 @@ router.post('/enviar_documento',authenticateToken, authorizeRole('coordenador'),
 //-----------encarregados---------------
 router.get('/dashboard', authenticateToken, authorizeRole('encarregado'), telapCont.showtelap);
 router.get('/documentos/:id',authenticateToken, authorizeRole('encarregado'), telapCont.buscar_documento);
-router.post('/assinar',authenticateToken, authorizeRole('encarregado'), telapCont.assinar_contrato);
+router.post()
 
 module.exports = router;

@@ -156,6 +156,4 @@ exports.buscar_documento = async (req, res) => {
       res.status(404).json({ erro: 'Contrato não encontrado' });
     }
 };
-exports.assinar_contrato = async (req, res) => {
-    const {id} = req.body;
-};
+xeport

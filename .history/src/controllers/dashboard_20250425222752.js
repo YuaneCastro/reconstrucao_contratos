@@ -157,5 +157,5 @@ exports.buscar_documento = async (req, res) => {
     }
 };
 exports.assinar_contrato = async (req, res) => {
-    const {id} = req.body;
+CONST 
 };
