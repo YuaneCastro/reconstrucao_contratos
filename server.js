@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Rotas
 app.get('/', (req, res) => {
-  res.render('index'); // ou outro arquivo .ejs
+  res.render('views/login/login'); // ou outro arquivo .ejs
 });
 
 // Exporta o app para o Vercel
