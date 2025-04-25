@@ -7,12 +7,30 @@
     <link rel="stylesheet" href="/assets/css/login.css">
 </head>
 <body>
-    <h1>Login</h1>
-    <form id="loginForm">
-        <input type="email" id="email" name="email" placeholder="Email" required>
-        <input type="password" id="password" name="senha" placeholder="Senha" required>
-        <button type="submit">Entrar</button>
-    </form>
+    <div class="login-wrapper">
+        <div class="login-container">
+          <form class="login-form">
+            <h2>Login</h2>
+    
+            <div class="input-group">
+              <input type="email" id="email" required placeholder=" " />
+              <label for="email">Email</label>
+            </div>
+    
+            <div class="input-group">
+              <input type="password" id="password" required placeholder=" " />
+              <label for="password">Password</label>
+            </div>
+    
+            <button type="submit">Entrar</button>
+          </form>
+        </div>
+
+        <a href="login-cordenacao" class="admin-icon-link">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Admin login" class="admin-icon" />
+        </a>
+
+      </div>
     <script src="/assets/js/login.js"></script>
 </body>
 </html>
