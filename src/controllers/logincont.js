@@ -51,7 +51,7 @@ exports.fazer_login = async (req, res) => {
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS,
-            },
+            }
         });
 
         await transporter.sendMail({
@@ -198,7 +198,9 @@ exports.verificar_login_cordenacao = async (req,res) => {
         res.cookie("token", authToken, { httpOnly: true, secure: true, maxAge: 30 * 24 * 60 * 60 * 1000 });
         res.clearCookie("tempToken");
 
-        res.json({ success: true, message: "Código recebido!" });
+        return res.json({ success: true, redirectTo: "/dashboard-cordenacao" });
+
+
 
     } catch (error) {
         console.error("Erro na confirmação:", error);
