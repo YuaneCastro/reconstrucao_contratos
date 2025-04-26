@@ -4,10 +4,10 @@ const app = express();
 
 // Configurações
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'src', 'views'));
 
 // Arquivos estáticos (CSS, imagens, JS, etc.)
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'src', 'public')));
 
 // Rotas
 app.get('/', (req, res) => {
