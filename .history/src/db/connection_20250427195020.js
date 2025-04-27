@@ -1,12 +1,12 @@
 require('dotenv').config();
 const { Client } = require('pg');
 
-// Utilizando DATABASE_URL, que é configurada automaticamente pelo Railway
 const client = new Client({
-  connectionString: process.env.DATABASE_URL, // A URL completa gerada pelo Railway
-  ssl: {
-      rejectUnauthorized: false, // Configuração necessária para o PostgreSQL no Railway
-  }
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
 });
 
 
