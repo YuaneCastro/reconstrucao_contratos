@@ -84,6 +84,7 @@ exports.redifinir_senha = async(req, res) => {
     const token = await gerarTokenRedefinicao(encarregadoId);
     const resetLink = `https://reconstrucaocontratos-production.up.railway.app/set-password/${token}`;
 
+
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {

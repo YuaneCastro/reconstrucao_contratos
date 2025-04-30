@@ -7,13 +7,8 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false }
 });
 
-pool.connect()
-  .then(client => {
-    console.log('Conectado ao banco de dados!');
-    client.release();
-  })
-  .catch(err => {
-    console.error('Erro ao conectar ao banco de dados:', err);
-  });
+client.connect()
+  .then(() => console.log('Conexão bem-sucedida ao banco de dados!'))
+  .catch(err => console.error('Erro de conexão: ', err.stack));
 
 module.exports = client;
