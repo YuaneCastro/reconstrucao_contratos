@@ -83,7 +83,7 @@ exports.redifinir_senha = async(req, res) => {
     const encarregado = await buscar_encarregado_id(encarregadoId);
     const token = await gerarTokenRedefinicao(encarregadoId);
     const resetLink = `https://reconstrucaocontratos-production.up.railway.app/set-password/${token}`;
-    console.log(resetLink);
+    
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -98,7 +98,7 @@ exports.redifinir_senha = async(req, res) => {
         to: encarregado.email,
         subject: 'Defina sua senha para acessar o sistema',
         html: `<p>Olá ${encarregado.nome},</p>
-            <p>Redefina sua senha para acessar o sistema.</p>
+            <p>Você foi cadastrado como encarregado de um estudante. Defina sua senha para acessar o sistema.</p>
             <p><a href="${resetLink}">Clique aqui para definir sua senha</a></p>`
     });
     return res.status(200).json({
