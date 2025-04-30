@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { pool } = require('pg');
+const { POLL } = require('pg');
 
 // Utilizando DATABASE_URL, que é configurada automaticamente pelo Railway
 const pool = new Pool({
