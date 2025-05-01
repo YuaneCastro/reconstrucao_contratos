@@ -7,6 +7,6 @@ const authorizeRole = require('../middlewares/authorizerole');
 
 router.post('/cadastro',authenticateToken, authorizeRole('coordenador'), authController.cadastrar);
 
-router.get('/set-password/:token', authController.telapass);
-router.post('/set-password/:token', authController.setPassword);
+router.get('/set-password/:token', authenticateToken,authController.telapass);
+router.post('/set-password/:token', authenticateToken,authController.setPassword);
 module.exports = router;
