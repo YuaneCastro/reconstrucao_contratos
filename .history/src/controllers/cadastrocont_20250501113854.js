@@ -6,7 +6,7 @@ exports.telapass = async (req, res) =>{
     const { token } = req.params;
     const tokenData = await buscarToken(token);
     if (!tokenData) {
-        const message = "O tempo disponível para a redefinição de senha de Sneha foi encerrado. Para solicitar uma nova oportunidade de redefinir a senha, por favor, entre em contacto com a instituição através de um dos seguintes meios: Telefone: +244 999 999 999, E-mail: apoio@instituicao.co.ao, Localização: Rua da Liberdade, nº 45, Luanda — Angola.";
+        const message = "Você precisa fazer login para acessar esta página.";
         return res.redirect("/Telaerro?message=" + encodeURIComponent(message));
     }
     res.render('cadastro/setPassword');
@@ -65,7 +65,7 @@ exports.cadastrar = async (req, res) => {
                 subject: 'Defina sua senha para acessar o sistema',
                 html: `<p>Olá ${encarregado_nome},</p>
                     <p>Você foi cadastrado como encarregado de um estudante. Defina sua senha para acessar o sistema.</p>
-                    <p><a href="${resetLink}" target="_blank">Clique aqui para definir sua senha</a></p>`
+                    <p><a href="${resetLink}">Clique aqui para definir sua senha</a></p>`
             });
         }    
         // se o encarregado ja existir

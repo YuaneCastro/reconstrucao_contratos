@@ -99,7 +99,7 @@ exports.redifinir_senha = async(req, res) => {
         subject: 'Defina sua senha para acessar o sistema',
         html: `<p>Olá ${encarregado.nome},</p>
             <p>Redefina sua senha para acessar o sistema.</p>
-            <p><a href="${resetLink}" target="_blank">Clique aqui para definir sua senha</a></p>`
+            <p><a href="${resetLink}" target="_blank">Clique aqui para definir sua senha</a>            </p>`
     });
     return res.status(200).json({
         sucesso: true,
