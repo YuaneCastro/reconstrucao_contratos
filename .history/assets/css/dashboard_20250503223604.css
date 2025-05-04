@@ -1,0 +1,392 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  body {
+    display: flex;
+    height: 100vh;
+    background-color: #f5f5f5;
+  }
+  .container {
+    display: flex;
+    width: 100%;
+  } 
+  /* SIDEBAR */
+  .sidebar {
+    width: 250px;
+    background-color: #004d3c; /* Verde escuro */
+    color: #bfa046;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+  } 
+  .sidebar h2 {
+    color: #bfa046;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+  }
+  .sidebar ul {
+    list-style: none;
+  }
+  .sidebar ul li {
+    padding: 10px 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .sidebar ul li:hover {
+    background-color: rgba(191, 160, 70, 0.2); /* #bfa046 com transparência */
+  }
+  .sidebar .footer {
+    font-size: 0.9rem;
+    color: #ccc;
+  } 
+  /* MAIN CONTENT */
+  .main {
+    margin-left: 250px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  /* TOPBAR */
+  .topbar {
+    height: 60px;
+    background-color: #007555; /* Verde médio */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  .topbar .greeting {
+    font-size: 1.1rem;
+  }
+  .topbar .actions button {
+    border: none;
+    background-color: #bfa046;
+    color: white;
+    padding: 8px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .topbar .actions button:hover {
+    background-color: #a88d3e;
+  }
+  /* CONTENT */
+  .content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+  }
+  .section {
+    display: none;
+  }
+  .section.active {
+    display: block;
+  }
+  .section h3 {
+    margin-bottom: 10px;
+    color: #004d3c;
+  }
+  .section p,
+  .section ul {
+    color: #333;
+  }
+
+
+  /* --- Código original preservado acima --- */
+  .documentos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .documento-card {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 16px;
+    width: 280px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .documento-card h4 {
+    margin-bottom: 10px;
+  } 
+  .documento-card p {
+    margin: 6px 0;
+  }
+  .documento-card button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .documento-card button:hover {
+    background-color: #45a049;
+  }
+  
+
+/* Nova estilização para o formulário de contrato */
+/* Estilo geral das tabelas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+/* Cabeçalho da tabela */
+table thead {
+  background-color: #f5f5f5;
+  color: #333;
+}
+table thead th {
+  padding: 12px 16px;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 2px solid #e0e0e0;
+}
+/* Linhas do corpo */
+table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+}
+/* Zebra stripe */
+table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+/* Hover nas linhas */
+table tbody tr:hover {
+  background-color: #f0f8ff;
+}
+/* Célula vazia em colspan */
+table tbody tr td[colspan] {
+  text-align: center;
+  font-style: italic;
+  color: #999;
+}
+/* Responsividade (opcional) */
+@media screen and (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
+  }
+
+  tbody td {
+    position: relative;
+    padding-left: 50%;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 16px;
+    font-weight: bold;
+    color: #666;
+  }
+}
+
+
+/*codigo de atualizar o contrato*/
+#conteudoContrato {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 60px 80px;
+  background-color: #fefefe;
+  border: 1px solid #999;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #222;
+  border-radius: 6px;
+  position: relative;
+}
+#conteudoContrato h4 {
+  text-align: center;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+#conteudoContrato p {
+  margin-bottom: 20px;
+  text-align: justify;
+}
+#conteudoContrato strong {
+  font-weight: bold;
+  color: #000;
+}
+
+/* Seção de assinatura no final */
+.assinatura {
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.assinatura div {
+  width: 45%;
+  border-top: 1px solid #000;
+  text-align: center;
+  padding-top: 8px;
+  font-size: 14px;
+}
+
+
+/* Botão Voltar */
+#visualizacaoContrato .header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Ajuste do espaço entre o título e o conteúdo */
+}
+#visualizacaoContrato h2 {
+  margin: 0; /* Remove a margem do título para melhor alinhamento */
+  color: #004d3c;
+}
+#visualizacaoContrato button {
+  background-color: #444;
+  color: #fff;
+  padding: 12px 24px;
+  font-family: 'Arial', sans-serif;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 200px; /* Ajuste de largura para os botões */
+  margin-top: 30px; /* Afastamento entre o conteúdo e os botões */
+}
+#visualizacaoContrato button:hover {
+  background-color: #222;
+}
+#visualizacaoContrato .buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Define o espaço entre os botões */
+  margin-top: 30px;
+}
+#visualizacaoContrato .btn-assinar {
+  background-color: #28a745; /* Cor do botão de Assinar */
+}
+#visualizacaoContrato .btn-assinar:hover {
+  background-color: #218838; /* Cor ao passar o mouse no botão de Assinar */
+}
+#visualizacaoContrato .btn-voltar {
+  background-color: #007bff; /* Cor do botão de Voltar */
+}
+#visualizacaoContrato .btn-voltar:hover {
+  background-color: #0056b3; /* Cor ao passar o mouse no botão de Voltar */
+}
+
+
+/*normas escolar */
+#normas {
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  padding: 30px;
+  background-color: #f4f7f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+#normas nav {
+  margin-bottom: 20px;
+  text-align: center;
+}
+#normas nav a {
+  margin: 0 10px;
+  color: #004d3c; /* verde escuro para os links */
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+#normas nav a:hover {
+  color: #006655; /* tom levemente mais claro no hover */
+}
+#normas section {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-left: 5px solid #bfa046; /* dourado */
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+#normas h2 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+#normas ul {
+  padding-left: 20px;
+}
+#normas ul li {
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 18px;
+}
+#normas ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #27ae60;
+}
+#normas small em {
+  color: #555;
+  display: block;
+  margin-bottom: 10px;
+}
+
+
+#detalhes-documento button {
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-bottom: 15px;
+}
+
+#detalhes-documento button:hover {
+  background-color: #3367d6;
+}
+
+#conteudo-detalhes {
+  margin-top: 20px;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+#conteudo-detalhes p {
+  margin-bottom: 10px;
+}
+
+#conteudo-detalhes h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
