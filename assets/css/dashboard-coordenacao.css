@@ -26,6 +26,28 @@ body {
     z-index: 1000;
 }
 
+@media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+  
+    .main-content {
+      margin-left: 0;
+    }
+  
+    .top-bar {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .documento-card {
+      width: 100%;
+    }
+  }
+  
+
 .top-bar .clickable {
     font-weight: bold;
     cursor: pointer;
@@ -72,7 +94,7 @@ body {
     margin-left: 250px;
     margin-top: 50px;
     padding: 20px;
-    width: 100%;
+    width: calc(100% - 250px);
 }
 
 /* Seções Ocultas */
