@@ -527,7 +527,6 @@ function exibirErro(campo, mensagem) {
 }
 
 function coletarDadosContrato() {
-    const id_documento = document.getElementById('documentoId').value;
     const tipoDocumento = document.getElementById('tipoDocumento').value;
     const titulo = document.getElementById('titulo').value;
     const conteudo = document.getElementById('conteudo').value;
@@ -548,7 +547,7 @@ function coletarDadosContrato() {
         });
     });
 
-    return { id_documento, tipoDocumento, titulo, conteudo, enviarTodos, dataExpiracao, especificacoes };
+    return { tipoDocumento, titulo, conteudo, enviarTodos, dataExpiracao, especificacoes };
 }
 function validarCampos(dados, tipo) {
     limparErros();
@@ -669,21 +668,5 @@ document.addEventListener('DOMContentLoaded', () => {
   
 
 function Editar_documento (button){
-    const id = button.getAttribute('data-id');
-    const tipo = button.getAttribute('data-tipo');
-    const titulo = button.getAttribute('data-titulo');
-    const descricao = button.getAttribute('data-descricao');
-    const dataEmissao = button.getAttribute('data-data_emissao');
-    const dataExpiracao = button.getAttribute('data-expiracao');
 
-    document.getElementById('tipoDocumento').value = tipo;
-    document.getElementById('titulo').value = titulo;
-    document.getElementById('dataExpiracao').value = dataExpiracao ? new Date(dataExpiracao).toISOString().split('T')[0] : '';
-    document.getElementById('conteudo').value = descricao;
-
-  // Armazenar o ID do documento no form, se quiseres
-  document.getElementById('edit_contrato').setAttribute('data-id', id);
-
-  // Mostrar a seção de edição
-  showSection('edit_contrato');
 };

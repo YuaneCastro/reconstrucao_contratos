@@ -137,7 +137,7 @@
                       data-data_emissao="<%= new Date(doc.data_emissao).toLocaleDateString('pt-BR') %>"
                       data-criado_em="<%= doc.tipo %>"
                       data_expiracao="<%= doc.data_emissao %>"
-                      >✏️ Editar e enviar</button>                     
+                      >📄 Editar e enviar</button>                     
                     </div>
                   <% }); %>
                 </div>
@@ -145,63 +145,7 @@
                 <p>Nenhum novo contrato.</p>
               <% } %>
         </div>
-        <div id="edit_contrato" class="section">
-            <form id="edit_contrato" onsubmit="event.preventDefault(); guardarEdicaoDocumento();">
-
-                <!-- Campo hidden para armazenar o ID do documento -->
-                <input type="hidden" id="documentoId" name="documentoId">
-              
-                <!-- Tipo de Documento -->
-                <div class="form-group">
-                  <label for="tipoDocumento">Tipo de Documento</label>
-                  <select id="tipoDocumento" name="tipoDocumento" onchange="atualizarTituloFormulario()" required data-erro-id="erroTipoDocumento">
-                    <option value="">Selecione o tipo do Documento</option>
-                    <option value="contrato">Contrato</option>
-                    <option value="comunicado">Comunicado</option>
-                  </select>
-                  <small id="erroTipoDocumento" class="erro-mensagem"></small>
-                </div>
-              
-                <!-- Título -->
-                <div class="form-group">
-                  <label for="titulo">Título do Documento</label>
-                  <input type="text" id="titulo" name="titulo" required data-erro-id="erroTitulo">
-                  <small id="erroTitulo" class="erro-mensagem"></small>
-                </div>
-              
-                <!-- Container de Especificações -->
-                <div id="especificacoesContainer"></div>
-              
-                <button type="button" onclick="adicionarEspecificacao()">+ Adicionar Raiz/Especificação</button>
-              
-                <!-- Data de Expiração (só para contratos) -->
-                <div class="form-group" id="dataExpiracaoGroup">
-                  <label for="dataExpiracao">Data de Expiração</label>
-                  <input type="date" id="dataExpiracao" name="dataExpiracao" data-erro-id="erroDataExpiracao">
-                  <small id="erroDataExpiracao" class="erro-mensagem"></small>
-                </div>
-              
-                <!-- Checkbox Enviar para Todos -->
-                <div class="form-group checkbox-highlight">
-                  <label>
-                    <input type="checkbox" id="enviarTodos" name="enviar_todos" value="1">
-                    Enviar para <strong>todos os encarregados</strong> (sem exceção)
-                  </label>
-                </div>
-              
-                <!-- Conteúdo -->
-                <div class="form-group">
-                  <label for="conteudo">Conteúdo</label>
-                  <textarea id="conteudo" name="conteudo" rows="6" required data-erro-id="erroConteudo"></textarea>
-                  <small id="erroConteudo" class="erro-mensagem"></small>
-                </div>
-              
-                <!-- Botões -->
-                <button type="submit" id="botao_guardar">Guardar Alterações</button>
-                <button type="button" onclick="showSection('dashboard')">Cancelar</button>
-              
-              </form>
-        </div>
+        
 
 
         <div id="students" class="section">

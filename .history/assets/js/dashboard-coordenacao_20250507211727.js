@@ -527,7 +527,7 @@ function exibirErro(campo, mensagem) {
 }
 
 function coletarDadosContrato() {
-    const id_documento = document.getElementById('documentoId').value;
+    const id = document.getElementById('documentoId').value = id;
     const tipoDocumento = document.getElementById('tipoDocumento').value;
     const titulo = document.getElementById('titulo').value;
     const conteudo = document.getElementById('conteudo').value;
@@ -548,7 +548,7 @@ function coletarDadosContrato() {
         });
     });
 
-    return { id_documento, tipoDocumento, titulo, conteudo, enviarTodos, dataExpiracao, especificacoes };
+    return { tipoDocumento, titulo, conteudo, enviarTodos, dataExpiracao, especificacoes };
 }
 function validarCampos(dados, tipo) {
     limparErros();

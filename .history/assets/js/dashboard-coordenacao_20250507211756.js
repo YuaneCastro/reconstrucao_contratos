@@ -527,7 +527,7 @@ function exibirErro(campo, mensagem) {
 }
 
 function coletarDadosContrato() {
-    const id_documento = document.getElementById('documentoId').value;
+    const id_documento = document.getElementById('documentoId').value = id;
     const tipoDocumento = document.getElementById('tipoDocumento').value;
     const titulo = document.getElementById('titulo').value;
     const conteudo = document.getElementById('conteudo').value;
