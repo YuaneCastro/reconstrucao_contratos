@@ -7,8 +7,7 @@
 body {
     display: flex;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #003366, #336699);
-    color: white;
+    background-color: #ecf0f1;
 }
 
 /* Top Bar */
