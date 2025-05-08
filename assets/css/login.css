@@ -29,12 +29,13 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-decoration: none;
 }
 
 .logo-img {
-  max-width: 200px;
-  margin-bottom: 24px;
+  max-width: 180px;
+  height: auto;
+  margin-bottom: 8px;
+  display: block;
 }
 
 /* CONTAINER: shape perfeito e responsivo */
