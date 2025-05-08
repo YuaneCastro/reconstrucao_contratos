@@ -26,28 +26,6 @@ body {
     z-index: 1000;
 }
 
-@media (max-width: 768px) {
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-    }
-  
-    .main-content {
-      margin-left: 0;
-    }
-  
-    .top-bar {
-      flex-direction: column;
-      height: auto;
-    }
-  
-    .documento-card {
-      width: 100%;
-    }
-  }
-  
-
 .top-bar .clickable {
     font-weight: bold;
     cursor: pointer;
@@ -69,6 +47,7 @@ body {
     top: 50px;
     left: 0;
     padding-top: 20px;
+    overflow-y: auto;
 }
 
 .sidebar ul {
@@ -258,10 +237,6 @@ input, select {
     font-weight: bold;
 }
 
-
-
-
-
 .container-contrato {
     max-width: 800px;
     margin: auto;
@@ -338,43 +313,48 @@ input, select {
 /* Novo estilo para o checkbox */
 .checkbox-highlight {
     display: flex;
-    align-items: center; /* Alinha o checkbox e o texto no centro verticalmente */
+    align-items: center;
 }
 
 .checkbox-highlight input[type="checkbox"] {
     margin: 0;
-    vertical-align: middle; /* Alinha verticalmente o checkbox */
-    width: auto;  /* Não estica o checkbox */
-    height: auto; /* Garante que o tamanho do checkbox esteja adequado */
+    vertical-align: middle;
+    width: auto;
+    height: auto;
 }
+
 .erro-mensagem {
     color: red;
     font-size: 0.85rem;
     margin-top: 4px;
     display: block;
-  }
-  
-  .documentos-grid {
+}
+
+.documentos-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
     margin-top: 16px;
-  }
-  .documento-card {
+}
+
+.documento-card {
     background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 16px;
     width: 280px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  .documento-card h4 {
+}
+
+.documento-card h4 {
     margin-bottom: 10px;
-  } 
-  .documento-card p {
+} 
+
+.documento-card p {
     margin: 6px 0;
-  }
-  .documento-card button {
+}
+
+.documento-card button {
     margin-top: 10px;
     padding: 8px 12px;
     background-color: #4CAF50;
@@ -382,7 +362,37 @@ input, select {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-  }
-  .documento-card button:hover {
+}
+
+.documento-card button:hover {
     background-color: #45a049;
-  }
+}
+
+/* Acessibilidade */
+a:focus, button:focus, .clickable:focus {
+    outline: 2px solid #f39c12;
+    outline-offset: 2px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .top-bar {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .documento-card {
+        width: 100%;
+    }
+}
