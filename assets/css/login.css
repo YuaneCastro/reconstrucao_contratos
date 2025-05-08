@@ -29,10 +29,12 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 16px;
+  border-color: #1b1b1b;
 }
 
 .logo-img {
-  max-width: 180px;
+  max-width: 200px;
   height: auto;
   margin-bottom: 8px;
   display: block;
