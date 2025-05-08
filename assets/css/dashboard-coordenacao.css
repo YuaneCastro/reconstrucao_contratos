@@ -13,7 +13,7 @@ body {
 /* Top Bar */
 .top-bar {
     width: 100%;
-    background: #2c3e50;
+    background: linear-gradient(135deg, #003366, #336699);
     color: white;
     display: flex;
     justify-content: space-between;
