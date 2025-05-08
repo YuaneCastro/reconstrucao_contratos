@@ -34,9 +34,9 @@ html, body {
 
 .logo-img {
   max-width: 200px;
+  width: 100%;
   height: auto;
   margin-bottom: 8px;
-  display: block;
 }
 
 /* CONTAINER: shape perfeito e responsivo */
