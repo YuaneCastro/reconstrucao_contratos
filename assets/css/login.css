@@ -19,7 +19,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 80vh;
   padding: 20px;
   gap: 16px; /* espaço entre o logo e o container */
 }
