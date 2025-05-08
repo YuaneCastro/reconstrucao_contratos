@@ -58,7 +58,7 @@
   /* TOPBAR */
   .topbar {
     height: 60px;
-    background-color: #007555; /* Verde médio */
+    background: linear-gradient(135deg, #003366, #336699);
     color: white;
     display: flex;
     justify-content: space-between;
