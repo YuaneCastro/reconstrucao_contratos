@@ -7,10 +7,6 @@ button:disabled {
     cursor: not-allowed;
 }
 
-.header-content {
-    padding: 0 16px;
-    text-align: center;
-}
 
 /* RESET + BASE */
 * {
