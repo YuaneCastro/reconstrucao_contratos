@@ -24,6 +24,18 @@ html, body {
   gap: 16px; /* espaço entre o container e o ícone */
 }
 
+/* LOGO */
+.logo-container {
+  text-align: center;
+}
+
+.logo-img {
+  max-width: 160px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 8px;
+}
+
 /* CONTAINER: shape perfeito e responsivo */
 .login-container {
   background-color: #ffffff;
@@ -47,6 +59,11 @@ html, body {
     aspect-ratio: unset;
     border-radius: 20px;
     padding: 32px 24px;
+  }
+
+  .logo-img {
+    max-width: 120px;
+    margin-bottom: 4px;
   }
 }
 
