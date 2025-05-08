@@ -30,10 +30,10 @@ html, body {
 }
 
 .logo-img {
-  max-width: 160px;
+  max-width: 180px;
   width: 100%;
   height: auto;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
 }
 
 /* CONTAINER: shape perfeito e responsivo */
