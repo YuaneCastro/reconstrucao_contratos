@@ -110,7 +110,7 @@ exports.redifinir_senha = async(req, res) => {
 exports.enviar_documento = async (req, res) => {
     const dadosContrato = req.body; // Pega os dados enviados no corpo da requisição
     try{
-        await enviar_documento(dadosContrato.tipoDocumento, dadosContrato.titulo, dadosContrato.conteudo,  dadosContrato.especificacoes, dadosContrato.enviarTodos, dadosContrato.dataExpiracao, dadosContrato.id);
+        await enviar_documento(dadosContrato.tipoDocumento, dadosContrato.titulo, dadosContrato.conteudo,  dadosContrato.especificacoes, dadosContrato.enviarParaTodos, dadosContrato.dataExpiracao, dadosContrato.id);
         return res.status(200).json({
             sucesso: true,
             motivo: "documento enviado com sucesso."
@@ -175,7 +175,8 @@ exports.buscar_documento = async (req, res) => {
     }
 };
 exports.assinar_contrato = async (req, res) => {
-    const { assinatura_doc_id, encarregado_id, estudante_id } = req.body;
+    const { dados } = req.body;
+    console.log(DAODS)
     const formatIP = (ip) => {
         return ip === "::1" ? "127.0.0.1" : ip;
       };

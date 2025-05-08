@@ -497,7 +497,7 @@ const buscar_encarregado_id = async (id) => {
 }
 const enviar_documento = async (tipo, titulo, descricao, especificacoes, enviarParaTodos, dataExpiracao, id=null) => {
     try {
-        console.log(enviarParaTodos)
+        console.log(envi)
         let documentoId = id;
         if (!documentoId) {
             const result = await pool.query(`
@@ -513,7 +513,7 @@ const enviar_documento = async (tipo, titulo, descricao, especificacoes, enviarP
                 INSERT INTO documentos_categorias (documento_id, curso, classe, turma, enviar_para_todos)
                 VALUES ($1, NULL, NULL, NULL, TRUE)
                 `, [documentoId]);
-                const encResult = await pool.query(`SELECT id FROM encarregados`);
+
             for (const row of encResult.rows) {
                 const encarregadoId = row.id;
 

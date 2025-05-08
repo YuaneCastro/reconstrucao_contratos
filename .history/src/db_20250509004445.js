@@ -513,7 +513,7 @@ const enviar_documento = async (tipo, titulo, descricao, especificacoes, enviarP
                 INSERT INTO documentos_categorias (documento_id, curso, classe, turma, enviar_para_todos)
                 VALUES ($1, NULL, NULL, NULL, TRUE)
                 `, [documentoId]);
-                const encResult = await pool.query(`SELECT id FROM encarregados`);
+
             for (const row of encResult.rows) {
                 const encarregadoId = row.id;
 

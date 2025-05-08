@@ -109,6 +109,7 @@ exports.redifinir_senha = async(req, res) => {
 };
 exports.enviar_documento = async (req, res) => {
     const dadosContrato = req.body; // Pega os dados enviados no corpo da requisição
+    console.log(dadosContrato)
     try{
         await enviar_documento(dadosContrato.tipoDocumento, dadosContrato.titulo, dadosContrato.conteudo,  dadosContrato.especificacoes, dadosContrato.enviarTodos, dadosContrato.dataExpiracao, dadosContrato.id);
         return res.status(200).json({
