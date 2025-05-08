@@ -21,20 +21,20 @@ html, body {
   justify-content: center;
   min-height: 100vh;
   padding: 20px;
-  gap: 16px; /* espaço entre o container e o ícone */
+  gap: 16px; /* espaço entre o logo e o container */
 }
 
-/* LOGO */
+/* LOGO CONTAINER COMO LINK */
 .logo-container {
-  text-align: center;
-  margin-top: -10px
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 
 .logo-img {
   max-width: 200px;
-  width: 100%;
-  height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 /* CONTAINER: shape perfeito e responsivo */
@@ -50,22 +50,6 @@ html, body {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-}
-
-@media (max-width: 550px) {
-  .login-container {
-    width: 100%;
-    max-width: 100%;
-    height: 50vh;
-    aspect-ratio: unset;
-    border-radius: 20px;
-    padding: 32px 24px;
-  }
-
-  .logo-img {
-    max-width: 160px;
-    margin-bottom: 16px;
-  }
 }
 
 /* FORM */
@@ -142,23 +126,19 @@ button:hover {
   background-color: #005a9e;
 }
 
-/* ADMIN ICON */
-.admin-icon-link {
-  display: flex;
-  justify-content: center;
-  text-decoration: none;
-}
+/* RESPONSIVO */
+@media (max-width: 550px) {
+  .login-container {
+    width: 100%;
+    max-width: 100%;
+    height: 50vh;
+    aspect-ratio: unset;
+    border-radius: 20px;
+    padding: 32px 24px;
+  }
 
-.admin-icon {
-  width: 40px;
-  height: 40px;
-  opacity: 0.5;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.admin-icon:hover {
-  opacity: 0.8;
-  transform: scale(1.05);
+  .logo-img {
+    max-width: 160px;
+    margin-bottom: 16px;
+  }
 }
