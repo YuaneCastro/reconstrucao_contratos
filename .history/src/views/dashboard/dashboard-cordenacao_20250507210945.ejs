@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Gestão</title>
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/dashboard-coordenacao.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <p class="clickable" onclick="showSection('novo_contrato')">Novo Documento</p>
+        <P class="clickable" onclick="showSection('logs')">logs de login</P>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li onclick="showSection('dashboard')">Dashboard</li>
+            <li class="clickable" onclick="toggleSubmenu('users-menu')">Usuários</li>
+            <ul id="users-menu" class="submenu">
+                <li id="Cadastrar" onclick="showSection('student-registration')">Cadastrar</li>
+                <li onclick="showSection('students')">Estudantes</li>
+                <li onclick="showSection('guardians')">Encarregados</li>
+            </ul>
+            <li class="clickable" onclick="toggleSubmenu('documents-menu')">Documentos</li>
+            <ul id="documents-menu" class="submenu">
+                <li onclick="showSection('contracts')">Contratos</li>
+                <li onclick="showSection('comunicados')">Comunicados</li>
+            </ul>
+            
+            <li id="logout-button" onclick="informar()">Terminar Sessão</li>
+        </ul>
+    </div>
+
+    <!-- Área Principal -->
+    <div class="main-content">
+        <div id="novo_contrato" class="section">
+            <div class="container-contrato">
+                <h2 id="formTitle">Criar Novo Documento</h2>
+                <form id="contratoForm">
+
+                     <!-- Tipo de Documento -->
+                    <div class="form-group">
+                        <label for="tipoDocumento">Tipo de Documento</label>
+                        <select id="tipoDocumento" name="tipoDocumento" onchange="atualizarTituloFormulario()" required data-erro-id="erroTipoDocumento">
+                            <option value="">secione o tipo do Documento</option>
+                            <option value="contrato">Contrato</option>
+                            <option value="comunicado">Comunicado</option>
+                        </select>
+                        <small id="erroTipoDocumento" class="erro-mensagem"></small>
+                    </div>
+                  <!-- Título -->
+                  <div class="form-group">
+                    <label for="titulo">Título do Contrato</label>
+                    <input type="text" id="titulo" name="titulo" required data-erro-id="erroTitulo">
+                    <small id="erroTitulo" class="erro-mensagem"></small>
+                  </div>
+            
+                  <!-- Container de Especificações -->
+                  <div id="especificacoesContainer"></div>
+            
+                  <button type="button" onclick="adicionarEspecificacao()">+ Adicionar Raiz/Especificação</button>
+                  
+                  <!-- Data de Expiração (só para contratos) -->
+                <div class="form-group" id="dataExpiracaoGroup">
+                    <label for="dataExpiracao">Data de Expiração</label>
+                    <input type="date" id="dataExpiracao" name="dataExpiracao"  data-erro-id="erroDataExpiracao">
+                    <small id="erroDataExpiracao" class="erro-mensagem"></small>
+                </div>
+  
+                  <div class="form-group checkbox-highlight">
+                    <label>
+                      <input type="checkbox" id="enviarTodos" name="enviar_todos" value="1">
+                      Enviar para <strong>todos os encarregados</strong> (sem exceção)
+                    </label>
+                  </div>
+                  
+                  <!-- Conteúdo -->
+                  <div class="form-group">
+                    <label for="conteudo">Conteúdo</label>
+                    <textarea id="conteudo" name="conteudo" rows="6" required data-erro-id="erroConteudo"></textarea>
+                    <small id="erroConteudo" class="erro-mensagem"></small>
+                  </div>
+                  
+                  <button type="submit" id="botao_guardar">Guardar</button>
+                  <button type="submit" id="botaoSubmit">Criar Documento</button>
+                </form>
+              </div>
+        </div>
+        <div id="logs" class="section">
+            <h1>Bom dia</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>IP</th>
+                        <th>Foi logado</th>
+                        <th>Data de envio</th>
+                        <th>Data de Login</th>
+                    </tr>
+                </thead>
+                <% logs.sort((a, b) => b.id - a.id); %>
+                <tbody>
+                    <% logs.forEach(log => { %>
+                        <tr>
+                            <td><%= log.id %></td>
+                            <td><%= log.ip %></td>
+                            <td><%= log.usado ? 'Sim' : 'Não' %></td>
+                            <td><%= log.data_envio ? new Date(log.data_envio).toLocaleString() : '-' %></td>
+                            <td><%= log.data_login ? new Date(log.data_login).toLocaleString() : '-' %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>    
+
+
+        <div id="dashboard" class="section active">
+            <h2>Documentos inacabados</h2>
+            <% if(documentos.length > 0){ %>
+                <div class="documentos-grid">
+                  <% documentos.forEach(doc => { %>
+                    <div class="documento-card">
+                      <h4><%= doc.titulo %></h4>
+                      <p><strong>Tipo:</strong> <%= doc.tipo %></p>
+                      <p><strong>Data de criação:</strong> <%= new Date(doc.criado_em).toLocaleDateString('pt-BR') %></p>  
+                      <p><strong>Ultima atualizacao:</strong> <%= new Date(doc.atualizado_em).toLocaleDateString('pt-BR') %></p>                  
+                      <button 
+                      onclick="Editar_documento(this)"
+                      class="view-btn"
+                      data-id="<%= doc.id %>"
+                      data-tipo="<%= doc.tipo %>"
+                      data-titulo="<%= doc.titulo %>"
+                      data-descricao="<%= doc.descricao %>"
+                      data-data_emissao="<%= new Date(doc.data_emissao).toLocaleDateString('pt-BR') %>"
+                      data-criado_em="<%= doc.tipo %>"
+                      data_expiracao="<%= doc.data_emissao %>"
+                      >📄 Editar e enviar</button>                     
+                    </div>
+                  <% }); %>
+                </div>
+              <% } else { %>
+                <p>Nenhum novo contrato.</p>
+              <% } %>
+        </div>
+        <div id="edit_contrato"></div>
+
+
+        <div id="students" class="section">
+            <div class="container">
+                <h2>Lista de Estudantes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NOME</th>
+                            <th>DATA DE NASCIMENTO</th>
+                            <th>CLASSE</th>
+                            <th>TURMA</th>
+                            <th>CURSO</th>
+                            <th>ID DO ENCARREGADO</th>
+                            <th>Açao</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(estudantes.length > 0){ %>
+                            <% estudantes.forEach(students =>{  %>
+                                <tr>
+                                    <td><%= students.id %></td>
+                                    <td><%= students.nome %></td>
+                                    <td><%= new Date(students.data_nascimento).toISOString().split('T')[0] %></td>
+                                    <td><%= students.classe %></td>
+                                    <td><%= students.turma %></td>
+                                    <td><%= students.curso%></td>
+                                    <td><%= students.encarregado_id %></td>
+                                    <td> 
+                                        <span onclick="showSection('edit_studentes')"
+                                        class="edit-btn-student"
+                                        data-id="<%= students.id %>"
+                                        data-nome="<%= students.nome %>"
+                                        data-classe="<%= students.classe %>"
+                                        data-turma="<%= students.turma %>"
+                                        data-curso="<%= students.curso%>">
+                                        ✏️
+                                        </span>
+                                    </td>
+                                </tr>
+                            <% });  %>   
+                        <% }else{ %>
+                            <tr>
+                                <td colspan="8">Nenhum estudante encontrado.</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="guardians" class="section">
+            <div class="container">
+                <h2>Lista de Encarregados</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                            <th>Criado em</th>
+                            <th>Atualizado em</th>
+                            <th>Açao</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (encarregados.length > 0) { %>
+                            <% encarregados.forEach(guardiao => { %>
+                                <tr>
+                                    <td><%= guardiao.id %></td>
+                                    <td><%= guardiao.nome %></td>
+                                    <td><%= guardiao.email %></td>
+                                    <td><%= guardiao.telefone %></td>
+                                    <td><%= new Date(guardiao.criado_em).toLocaleString('pt-PT') %></td>
+                                    <td><%= new Date(guardiao.atualizado_em).toLocaleString('pt-PT') %></td>
+                                    <td class="actions">
+                                        <span onclick="showSection('edit_guardians')"
+                                        class="edit-btn-guardian"
+                                        data-id="<%= guardiao.id %>"
+                                        data-nome="<%= guardiao.nome %>"
+                                        data-email="<%= guardiao.email %>"
+                                        data-telefone="<%= guardiao.telefone %>"
+                                        data-estudantes='<%= JSON.stringify(estudantes.filter(est => est.encarregado_id === guardiao.id)) %>'
+                                        >✏️</span>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="8">Nenhum encarregado encontrado.</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div id="edit_studentes" class="section">
+            <form action="/update_student" method="POST" id="form-edit-student">
+                <input type="hidden" name="id" id="editar-id-estudante"> 
+                <button type="button" onclick="clearEditForm();showSection('students')">voltar</button>
+            <label for="nome">Nome do Estudante</label>
+                <input type="text" name="nome" id="nome" placeholder="Nome do estudante" required>
+
+                <label for="classe">Classe</label>
+                <select name="classe" id="classe" required onchange="verificarClasse()">
+                    <option value="" disabled selected>Selecione a classe</option>
+                    <option value="1ª Classe">1ª Classe</option>
+                    <option value="2ª Classe">2ª Classe</option>
+                    <option value="3ª Classe">3ª Classe</option>
+                    <option value="4ª Classe">4ª Classe</option>
+                    <option value="5ª Classe">5ª Classe</option>
+                    <option value="6ª Classe">6ª Classe</option>
+                    <option value="7ª Classe">7ª Classe</option>
+                    <option value="8ª Classe">8ª Classe</option>
+                    <option value="9ª Classe">9ª Classe</option>
+                    <option value="10ª Classe">10ª Classe</option>
+                    <option value="11ª Classe">11ª Classe</option>
+                    <option value="12ª Classe">12ª Classe</option>
+                    <option value="13ª Classe">13ª Classe</option>
+                </select>
+            
+                <div id="cursoContainer" style="display: none;">
+                    <label for="curso">Curso</label>
+                    <select name="curso" id="curso">
+                        <option value="" disabled selected>Selecione o curso</option>
+                        <option value="Ciências Exatas">Ciências Exatas</option>
+                        <option value="Ciências Biológicas">Ciências Biológicas</option>
+                        <option value="Ciências Humanas">Ciências Humanas</option>
+                        <option value="Eletrotecnia">Eletrotecnia</option>
+                        <option value="Informática">Informática</option>
+                        <option value="Construção Civil">Construção Civil</option>
+                        <option value="Gestão e Economia">Gestão e Economia</option>
+                    </select>
+                </div>
+            
+                <label for="turma">Turma</label>
+                <select name="turma" id="turma">
+                    <option value="" disabled selected>Selecione a Turma</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                </select>
+
+                <div id="error-message" style="color: red; display: none;"></div>
+                <button type="submit">Atualizar</button>
+            </form>
+        </div>
+        <div id="edit_guardians" class="section">
+            <form id="form-editar" action="/update_encarregado" method="POST">
+                <button type="button" onclick="clearEditForm(); showSection('guardians')" >voltar</button>
+                <h3>Editar Encarregado</h3>
+                <input type="hidden" id="editar-id" name="id">
+                <label for="editar-nome">Nome:</label>
+                <input type="text" id="editar-nome" name="nome" required>
+
+                <label for="editar-email">Email:</label>
+                <input type="email" id="editar-email" name="email" required>
+
+                <label for="editar-telefone">Telefone:</label>
+                <input type="text" id="editar-telefone" name="telefone" required>
+                <div id="error-message" style="color: red; display: none;"></div>
+                <button type="submit">Atualizar</button>
+                
+                <div id="estudantes-associados" style="margin-top: 1em; padding: 1em; border: 1px solid #ccc; border-radius: 8px;">
+                    <!-- Os estudantes vão aparecer aqui -->
+                </div>   
+                <button type="button" id="deletar">Deletar</button> 
+                <button type="button" id="reenviar">reenvia link da Senha</button> 
+            </form>
+        </div>     
+        
+
+        <div id="contracts" class="section">
+            <h2>Gestão de Contratos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Titulo</th>
+                        <th>Descricao</th>
+                        <th>Data de emissao</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(contrato.length > 0){ %>
+                        <% contrato.forEach(contract =>{  %>
+                            <tr>
+                                <td><%= contract.id %></td>
+                                <td><%= contract.titulo %></td>
+                                <td><%= contract.descricao %></td>
+                                <td><%= new Date(contract.data_emissao).toISOString().split('T')[0] %></td>
+                            </tr>
+                        <% });  %>   
+                    <% }else{ %>
+                        <tr>
+                            <td colspan="8">Nenhum contrato encontrado.</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div id="comunicados" class="section">
+            <h2>Gestão de comunicados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Titulo</th>
+                        <th>Descricao</th>
+                        <th>Data de emissao</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(comunicado.length > 0){ %>
+                        <% comunicado.forEach(comunic =>{  %>
+                            <tr>
+                                <td><%= comunic.id %></td>
+                                <td><%= comunic.titulo %></td>
+                                <td><%= comunic.descricao %></td>
+                                <td><%= new Date(comunic.data_emissao).toISOString().split('T')[0] %></td>
+                            </tr>
+                        <% });  %>   
+                    <% }else{ %>
+                        <tr>
+                            <td colspan="8">Nenhum comunicado encontrado.</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div id="student-registration" class="section">
+            <form id="form-estudante">
+        
+                <label for="nome">Nome do Estudante</label>
+                <input type="text" name="nome" id="nome2" placeholder="Nome do estudante" required>
+            
+                <label for="data_nascimento">Data de Nascimento</label>
+                <input type="date" name="data_nascimento" id="data_nascimento2" required>
+            
+                <label for="classe">Classe</label>
+                <select name="classe" id="classe2" onchange="verificarClasse2()">
+                    <option value="" disabled selected>Selecione a classe</option>
+                    <option value="1ª Classe">1ª Classe</option>
+                    <option value="2ª Classe">2ª Classe</option>
+                    <option value="3ª Classe">3ª Classe</option>
+                    <option value="4ª Classe">4ª Classe</option>
+                    <option value="5ª Classe">5ª Classe</option>
+                    <option value="6ª Classe">6ª Classe</option>
+                    <option value="7ª Classe">7ª Classe</option>
+                    <option value="8ª Classe">8ª Classe</option>
+                    <option value="9ª Classe">9ª Classe</option>
+                    <option value="10ª Classe">10ª Classe</option>
+                    <option value="11ª Classe">11ª Classe</option>
+                    <option value="12ª Classe">12ª Classe</option>
+                    <option value="13ª Classe">13ª Classe</option>
+                </select>
+            
+                <div id="cursoContainer2" style="display: none; margin-top: 10px;">
+                    <label for="curso2">Curso</label>
+                    <select name="curso2" id="curso2">
+                        <option value="" disabled selected>Selecione o curso</option>
+                        <option value="Ciências Exatas">Ciências Exatas</option>
+                        <option value="Ciências Biológicas">Ciências Biológicas</option>
+                        <option value="Ciências Humanas">Ciências Humanas</option>
+                        <option value="Eletrotecnia">Eletrotecnia</option>
+                        <option value="Informática">Informática</option>
+                        <option value="Construção Civil">Construção Civil</option>
+                        <option value="Gestão e Economia">Gestão e Economia</option>
+                    </select>
+                </div>
+            
+                <label for="turma">Turma</label>
+                <select name="turma" id="turma2">
+                    <option value="" disabled selected>Selecione a Turma</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                </select>
+                <h3>Dados do Encarregado</h3>
+            
+                <label for="encarregado_nome">Nome</label>
+                <input type="text" name="encarregado_nome" id="encarregado_nome" placeholder="Nome do encarregado" required>
+            
+                <label for="encarregado_email">E-mail</label>
+                <input type="email" name="encarregado_email" id="encarregado_email" placeholder="E-mail do encarregado" required>
+            
+                <label for="telefone">Número de telefone</label>
+                <input type="text" name="telefone" id="telefone" placeholder="Telefone do encarregado" required>
+                
+                <div id="mensagem" style="margin-top: 10px; font-weight: bold;"></div>
+                <button id="botao_cadastro" type="submit" >Cadastrar Estudante</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+    <script src="/assets/js/dashboard-coordenacao.js"></script>
+</body>
+</html>
