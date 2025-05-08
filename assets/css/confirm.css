@@ -7,9 +7,10 @@ button:disabled {
     cursor: not-allowed;
 }
 
-h1
-{
-padding-top: 5vh;}
+.header-content {
+    padding: 0 16px;
+    text-align: center;
+}
 
 /* RESET + BASE */
 * {
