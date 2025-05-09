@@ -233,7 +233,7 @@ input, select {
     background: #466e97;
 }
 
-#logout-button {
+#logout-button:hover{
     background-color: #a93226;
 }
 
