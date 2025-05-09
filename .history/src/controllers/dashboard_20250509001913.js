@@ -110,7 +110,7 @@ exports.redifinir_senha = async(req, res) => {
 exports.enviar_documento = async (req, res) => {
     const dadosContrato = req.body; // Pega os dados enviados no corpo da requisição
     try{
-        await enviar_documento(dadosContrato.tipoDocumento, dadosContrato.titulo, dadosContrato.conteudo,  dadosContrato.especificacoes, dadosContrato.enviarTodos, dadosContrato.dataExpiracao, dadosContrato.id);
+        await enviar_documento(dadosContrato.tipoDocumento, dadosContrato.titulo, dadosContrato.conteudo,  dadosContrato.especificacoes, dadosContrato.enviarParaTodos, dadosContrato.dataExpiracao, dadosContrato.id);
         return res.status(200).json({
             sucesso: true,
             motivo: "documento enviado com sucesso."
@@ -174,26 +174,8 @@ exports.buscar_documento = async (req, res) => {
       res.status(404).json({ erro: 'Contrato não encontrado' });
     }
 };
-exports.assinar_contrato = async (req, res) => {
-    const { assinatura_doc_id, encarregado_id, estudante_id } = req.body;
-    const formatIP = (ip) => {
-        return ip === "::1" ? "127.0.0.1" : ip;
-      };
-      const ip_user = formatIP(
-        req.headers["x-forwarded-for"]?.split(",")[0] ||
-        req.socket?.remoteAddress ||
-        req.connection?.remoteAddress ||
-        req.ip
-      );
-    try{
-        const result = await verificarAssinatura(assinatura_doc_id, encarregado_id, estudante_id);
-        if (!result) {
-            return res.status(400).json({ sucesso: false, motivo: 'Dados não conferem. Assinatura inválida.' });
-        }
-        await assinarContrato(assinatura_doc_id, ip_user);
-        return res.json({ sucesso: true, motivo: 'Contrato assinado com sucesso!' });
-    }catch(err){
-        console.log(err);
-        return res.status(500).json({ sucesso: false, motivo: 'Erro interno ao assinar o contrato.' });
-    }
+exports.enviar_documento = async (req, res) => {
+    const { dados } = req.body;
+    console.log(dados)
+    
 };

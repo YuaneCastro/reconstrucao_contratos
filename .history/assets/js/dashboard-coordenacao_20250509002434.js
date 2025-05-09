@@ -591,6 +591,7 @@ function validarCampos(dados, tipo) {
 
 async function guardarContrato(dados) {
     try {
+        alert(JSON.stringify(dados))
         const response = await fetch('/guardar_documento', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -599,6 +600,7 @@ async function guardarContrato(dados) {
         const data = await response.json();
         if (data.sucesso) {
             alert("Documento guardado com sucesso.");
+            alert(JSON.stringify(dados))
             location.reload();
         } else {
             alert("Erro ao guardar o documento.");
@@ -618,6 +620,7 @@ document.getElementById('botao_guardar').addEventListener('click', async functio
 
 async function enviarContrato(dados) {
     try {
+        alert(JSON.stringify(dados))
         const response = await fetch('/enviar_documento', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

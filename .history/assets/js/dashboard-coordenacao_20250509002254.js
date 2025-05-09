@@ -618,6 +618,7 @@ document.getElementById('botao_guardar').addEventListener('click', async functio
 
 async function enviarContrato(dados) {
     try {
+        atualizarEncarregado()
         const response = await fetch('/enviar_documento', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

@@ -1,15 +1,8 @@
 const pool = require('../src/db/connection');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
-const nodemailer = require('nodemailer');
 require('dotenv').config();
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,   // Usuário (e-mail) configurado nas variáveis de ambiente
-        pass: process.env.EMAIL_PASS,   // Senha configurada nas variáveis de ambiente
-    },
-});
+
 
 // log de atividades
 const logEvent = async (encarregado_id, estudante_id, acao, detalhes) => {
@@ -504,7 +497,6 @@ const buscar_encarregado_id = async (id) => {
 }
 const enviar_documento = async (tipo, titulo, descricao, especificacoes, enviarParaTodos, dataExpiracao, id=null) => {
     try {
-        console.log(enviarParaTodos)
         let documentoId = id;
         if (!documentoId) {
             const result = await pool.query(`
@@ -516,21 +508,20 @@ const enviar_documento = async (tipo, titulo, descricao, especificacoes, enviarP
             documentoId = result.rows[0].id;
         }
         if (enviarParaTodos) {
+            const encResult = await pool.query(`SELECT id FROM encarregados`);
             await pool.query(`
                 INSERT INTO documentos_categorias (documento_id, curso, classe, turma, enviar_para_todos)
-                VALUES ($1, NULL, NULL, NULL, TRUE)
-                `, [documentoId]);
-                const encResult = await pool.query(`SELECT id, email FROM encarregados`);
+      VALUES ($1, NULL, NULL, NULL, TRUE)
+  `, [documentoId]);
+
             for (const row of encResult.rows) {
                 const encarregadoId = row.id;
-                const encarregadoEmail = row.email;
 
                 // Buscar os estudantes do encarregado
                 const estudantesResult = await pool.query(`
-                SELECT s.id, s.nome
-                FROM estudantes s
-                WHERE s.encarregado_id = $1
-                ORDER BY s.id ASC
+                    SELECT id FROM estudantes
+                    WHERE encarregado_id = $1
+                    ORDER BY id ASC
                 `, [encarregadoId]);
 
                 let estado = tipo === 'contrato' ? 'pendente' : 'assinado';
@@ -538,7 +529,6 @@ const enviar_documento = async (tipo, titulo, descricao, especificacoes, enviarP
                     if (estudantesResult.rows.length > 0) {
                         for (const estudante of estudantesResult.rows) {
                             const estudanteId = estudante.id;
-                            const estudanteNome = estudante.nome;
 
                             await pool.query(
                                 `INSERT INTO assinaturas_documento (documento_id, encarregado_id, estudante_id, estado)
@@ -557,7 +547,6 @@ const enviar_documento = async (tipo, titulo, descricao, especificacoes, enviarP
                                     `Documento '${titulo}' do tipo '${tipo}' enviado para encarregado (todos) associado a estudante ${estudanteId}`
                                 ]
                             );
-                            await sendEmail(encarregadoEmail, tipo, titulo, descricao, dataExpiracao, estudanteNome);
                         }
                     }
                 } else {
@@ -578,7 +567,6 @@ const enviar_documento = async (tipo, titulo, descricao, especificacoes, enviarP
                             `Documento '${titulo}' do tipo '${tipo}' enviado para encarregado (todos)`
                         ]
                     );
-                    await sendEmail(encarregadoEmail, tipo, titulo, descricao, dataExpiracao, null);
                 }
             }
         } else {
@@ -598,7 +586,7 @@ const enviar_documento = async (tipo, titulo, descricao, especificacoes, enviarP
                 ]);
 
                 const query = `
-                    SELECT e.id AS encarregado_id, e.email AS encarregado_email, s.id AS estudante_id, s.nome AS estudante_nome
+                    SELECT e.id AS encarregado_id, s.id AS estudante_id
                     FROM encarregados e
                     JOIN estudantes s ON e.id = s.encarregado_id
                     WHERE s.classe = $1
@@ -631,7 +619,6 @@ const enviar_documento = async (tipo, titulo, descricao, especificacoes, enviarP
                             `Documento '${titulo}' do tipo '${tipo}' enviado para curso=${curso || 'todos'}, classe=${classe}, turma=${turma || 'todos'}`
                         ]
                     );
-                    await sendEmail(r.encarregado_email, tipo, titulo, descricao, dataExpiracao, r.estudante_nome);
                 }
             }
         }
@@ -696,28 +683,6 @@ const guardar_documento = async(tipo, titulo, descricao = null, especificacoes =
         throw err;
     }
 }
-const sendEmail = async (encarregadoEmail, tipo, titulo, descricao, dataExpiracao, estudanteNome) => {
-    const mailOptions = {
-      from: process.env.EMAIL_USER,  // De quem o e-mail está sendo enviado
-      to: encarregadoEmail,          // E-mail do encarregado
-      subject: `Novo Documento: ${titulo}`,
-      html: `
-        <p>Você recebeu um novo documento do tipo <strong>${tipo}</strong>.</p>
-        <p><strong>Título:</strong> ${titulo}</p>
-        <p><strong>Descrição:</strong> ${descricao.substring(0, 100)}...</p>
-        <p><strong>Data de Expiração:</strong> ${dataExpiracao}</p>
-        <p><strong>Estudante:</strong> ${estudanteNome}</p>
-        <p><a href="reconstrucaocontratos-production.up.railway.app">Clique aqui para acessar o painel do encarregado</a></p>
-      `
-    };
-  
-    try {
-      await transporter.sendMail(mailOptions);
-      console.log(`E-mail enviado para ${encarregadoEmail}`);
-    } catch (error) {
-      console.error(`Erro ao enviar e-mail para ${encarregadoEmail}: `, error);
-    }
-  };
 const buscar_documento_contrato = async() =>{
     try{
         const result = await pool.query(`  SELECT * FROM documentos WHERE tipo = 'contrato' ORDER BY id DESC`);
