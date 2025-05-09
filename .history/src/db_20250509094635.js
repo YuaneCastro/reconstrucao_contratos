@@ -617,7 +617,7 @@ if (turma && turma !== 'todos') {
     query += ` AND s.turma = $${paramIndex}`;
     params.push(turma);
     paramIndex++;
-}
+},
 
                 const res = await pool.query(query, params);
 
