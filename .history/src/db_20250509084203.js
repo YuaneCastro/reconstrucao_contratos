@@ -706,8 +706,8 @@ const sendEmail = async (encarregadoEmail, tipo, titulo, descricao, dataExpiraca
         <p><strong>Título:</strong> ${titulo}</p>
         <p><strong>Descrição:</strong> ${descricao.substring(0, 100)}...</p>
         <p><strong>Data de Expiração:</strong> ${dataExpiracao}</p>
-        <p><strong>Estudante:</strong> ${estudanteNome}</p>
-        <p><a href="reconstrucaocontratos-production.up.railway.app">Clique aqui para acessar o painel do encarregado</a></p>
+        <p>Estudante: ${estudanteNome}</p>
+        <p><a href="URL_DO_LOGIN_ENCARREGADO">Clique aqui para acessar o painel do encarregado</a></p>
       `
     };
   
