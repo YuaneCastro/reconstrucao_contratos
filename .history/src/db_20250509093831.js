@@ -604,20 +604,19 @@ const enviar_documento = async (tipo, titulo, descricao, especificacoes, enviarP
     WHERE s.classe = $1
 `;
 
-let params = [classe];
-let paramIndex = 2;
+                let params = [classe];
+                let paramIndex = 2; // porque $1 já é a classe     
+                if (curso) {
+                    query += ` AND s.curso = $${paramIndex}`;
+                    params.push(curso);
+                    paramIndex++;
+                }
 
-if (curso) {
-    query += ` AND s.curso = $${paramIndex}`;
-    params.push(curso);
-    paramIndex++;
-}
-
-if (turma && turma !== 'todos') {
-    query += ` AND s.turma = $${paramIndex}`;
-    params.push(turma);
-    paramIndex++;
-}
+                if (turma && turma !== 'todos') {
+                    query += ` AND s.turma = $${paramIndex}`;
+                    params.push(turma);
+                    paramIndex++;
+                }
                 const res = await pool.query(query, params);
 
                 for (const r of res.rows) {

@@ -597,27 +597,26 @@ const enviar_documento = async (tipo, titulo, descricao, especificacoes, enviarP
                     turma !== 'todos' ? turma : null
                 ]);
 
-                let query = `
-    SELECT e.id AS encarregado_id, e.email AS encarregado_email, s.id AS estudante_id, s.nome AS estudante_nome
-    FROM encarregados e
-    JOIN estudantes s ON e.id = s.encarregado_id
-    WHERE s.classe = $1
-`;
+                const query = `
+                SELECT e.id AS encarregado_id, e.email AS encarregado_email, s.id AS estudante_id, s.nome AS estudante_nome
+                FROM encarregados e
+                JOIN estudantes s ON e.id = s.encarregado_id
+                WHERE s.classe = $1
+                `;
 
-let params = [classe];
-let paramIndex = 2;
-
-if (curso) {
-    query += ` AND s.curso = $${paramIndex}`;
-    params.push(curso);
-    paramIndex++;
-}
-
-if (turma && turma !== 'todos') {
-    query += ` AND s.turma = $${paramIndex}`;
-    params.push(turma);
-    paramIndex++;
-}
+                let params = [classe];
+                let paramIndex = 2; // porque $1 já é a classe     
+                if (curso) {
+                    query += ` AND s.curso = $${paramIndex}`;
+                    params.push(curso);
+                    paramIndex++;
+                }
+                
+                if (turma && turma !== 'todos') {
+                    query += ` AND s.turma = $${paramIndex}`;
+                    params.push(turma);
+                    paramIndex++;
+                }
                 const res = await pool.query(query, params);
 
                 for (const r of res.rows) {
