@@ -158,6 +158,7 @@ exports.showtelap = async (req, res) => {
         const log_atividade = await log_atividades(id);
         const documentos = await buscarDocumentosDoEncarregado(id);
         const documentos_pendentes = await buscarContratosPendentes(id);
+        console.log(documentos_pendentes)
         res.render("dashboard/dashboard",{email, nome, id, estudantes, log_atividade, documentos, documentos_pendentes});
     } catch (error) {
         console.log(error);

@@ -164,12 +164,13 @@ const buscarDocumentosDoEncarregado = async (id) => {
     d.descricao,
     d.data_emissao,
     d.data_expiracao,
-    e.nome AS estudante_nome
+    e.nome AS estudante_nome 
   FROM documentos d
   INNER JOIN assinaturas_documento ad ON d.id = ad.documento_id
-  LEFT JOIN estudantes e ON ad.estudante_id = e.id
+  INNER JOIN estudantes e ON ad.estudante_id = e.id
   WHERE ad.encarregado_id = $1
-  ORDER BY d.id
+  ORDER BY d.id;
+  
 `, [id])
     return result.rows;
 };

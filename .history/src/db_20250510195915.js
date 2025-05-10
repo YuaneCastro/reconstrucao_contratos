@@ -157,20 +157,13 @@ const log_atividades = async (id) => {
 };
 const buscarDocumentosDoEncarregado = async (id) => {
     const result = await pool.query(`
-    SELECT 
-    d.id AS documento_id,
-    d.tipo,
-    d.titulo,
-    d.descricao,
-    d.data_emissao,
-    d.data_expiracao,
-    e.nome AS estudante_nome
-  FROM documentos d
-  INNER JOIN assinaturas_documento ad ON d.id = ad.documento_id
-  LEFT JOIN estudantes e ON ad.estudante_id = e.id
-  WHERE ad.encarregado_id = $1
-  ORDER BY d.id
-`, [id])
+        SELECT d.id AS documento_id, d.tipo, d.titulo, d.descricao, d.data_emissao, d.data_expiracao, e.nome AS estudante_nome 
+        FROM documentos d
+        INNER JOIN assinaturas_documento ad ON d.id = ad.documento_id
+        INNER JOIN estudantes e ON ad.estudante_id = e.id
+        WHERE ad.encarregado_id = $1
+    `, [id]);
+
     return result.rows;
 };
 const verificarPermissaoDocumento = async (documento_id, id) => {
@@ -212,7 +205,7 @@ WHERE
   )
   AND (d.data_expiracao IS NULL OR d.data_expiracao >= CURRENT_DATE)
 ORDER BY d.data_emissao DESC;
-;  `
+;  
   
     const result = await pool.query(query, [id]);
     return result.rows;
