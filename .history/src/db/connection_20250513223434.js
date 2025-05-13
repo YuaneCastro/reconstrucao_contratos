@@ -3,7 +3,7 @@ const { Pool } = require('pg');
 
 // Utilizando DATABASE_URL, que é configurada automaticamente pelo Railway
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: ,
   ssl: { rejectUnauthorized: false }
 });
 
