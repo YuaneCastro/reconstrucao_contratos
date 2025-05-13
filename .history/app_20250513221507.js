@@ -24,8 +24,8 @@ app.use(session({
   }),
   secret: 'sua_chave_secreta',
   resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 dia
+  saveUninitialized: true,
+  cookie: { secure: false }
 }));
 
 // Rotas
