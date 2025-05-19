@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel do Encarregado</title>
+  <link rel="stylesheet" href="/assets/css/dashboard.css">
+</head>
+<body>
+  <div class="container">
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+      <div>
+        <h2>imagem da escola</h2>
+        <ul>
+            <strong>
+          <li onclick="showSection('dashboard')">DASHBOARD</li>
+          <li onclick="showSection('estudantes')">ESTUDANTES</li>
+          <li onclick="showSection('contratos')"> DOCUMENTOS</li>
+          <li onclick="showSection('log')">ATIVIDADES</li>
+          <li onclick="showSection('normas')"> NORMAS</li>
+          <li onclick="showSection('ajuda')">❓ Ajuda</li>
+        </strong>     
+        </ul>
+      </div>
+
+      <div class="footer">
+        <p><strong>Contato:</strong></p>
+        <p>📞 (99) 99999-9999</p>
+        <p>📧 contato@escola.com</p>
+        <p>📍 Rua das Flores, 123 – Centro</p>
+      </div>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main">
+      <!-- TOPBAR -->
+      <div class="topbar">
+        <div class="greeting">Olá, <strong><%= nome %></strong>!</div>
+        <div class="actions">
+          <button id="logout-button" onclick="informar()">Sair</button>
+        </div>
+      </div>
+
+      <!-- CONTEÚDO DINÂMICO -->
+      <div class="content">
+        <div id="dashboard" class="section active">
+          <h3>Novos Documentos</h3>
+          <% if(documentos_pendentes.length > 0){ %>
+            <div class="documentos-grid">
+              <% documentos_pendentes.forEach(doc => { %>
+                <div class="documento-card">
+                  <h4><%= doc.titulo %></h4>
+                  <% if (!(doc.tipo === 'comunicado' && (!doc.estudante_id || !doc.estudante_nome))) { %>
+                    <p><strong>Nome:</strong> <%= doc.estudante_nome %></p>
+                  <% } %>
+                  <p><strong>Tipo:</strong> <%= doc.tipo %></p>
+                  <p><strong>Data de criação:</strong> <%= new Date(doc.data_emissao).toLocaleDateString('pt-BR') %></p>
+                  <p><strong>Data de Expiração:</strong>
+                    <%= doc.data_expiracao ? new Date(doc.data_expiracao).toLocaleDateString('pt-BR') : 'Não definida' %>
+                  </p>
+
+                                   
+                  <button 
+                  onclick="handleViewContract(this)"
+                  class="view-btn"
+                  data-documento-id="<%= doc.documento_id %>"
+                  data-id="<%= doc.assinatura_id %>"
+                  data-id_encarregado="<%= doc.encarregado_id %>"
+                  data-id_estudante="<%= doc.estudante_id %>"
+                  data-titulo="<%= doc.titulo %>"
+                  data-nome="<%= doc.estudante_nome %>"
+                  data-tipo="<%= doc.tipo %>"
+                  data-data_emissao="<%= doc.data_emissao %>"
+                  data-data_expiracao="<%= doc.data_expiracao %>"
+                  data-descricao="<%= doc.descricao || 'Sem descrição' %>"
+                  <%= doc.tipo === 'Contrato' ? 'Ver e Assinar' : 'Visualizar' %>
+                  >📄 Ver e Assinar</button>
+                                  
+                </div>
+              <% }); %>
+            </div>
+          <% } else { %>
+            <p>Nenhum novo contrato.</p>
+          <% } %>
+        </div>
+        <div id="visualizacaoContrato" class="section">
+          <div class="header-section">
+            <h2>Visualizar Documento</h2>
+            <button onclick="showSection('dashboard')">🔙 Voltar</button>
+          </div>
+          <div id="conteudoContrato"></div>
+        </div>
+        
+        <div id="estudantes" class="section">
+          <h3>Estudantes Representados</h3>
+          <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOME</th>
+                    <th>CLASSE</th>
+                    <th>TURMA</th>
+                    <th>CURSO</th>
+                    <th>DATA NASCIMENTO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(estudantes.length > 0){ %>
+                    <% estudantes.forEach(student =>{  %>
+                        <tr>
+                          <td><%= student.id %></td>
+                          <td><%= student.nome %></td>
+                          <td><%= student.classe %></td>
+                          <td><%= student.turma %></td>
+                          <td><%= student.curso %></td>
+                          <td><%= new Date(student.data_nascimento).toISOString().split('T')[0] %></td>
+                        </tr>
+                    <% });  %>   
+                <% }else{ %>
+                    <tr>
+                        <td colspan="8">Nenhuma estudante encontrado.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        </div>
+
+        <div id="contratos" class="section">
+          <h3>Documentos</h3>
+          <% if(documentos.length > 0){ %>
+            <div class="documentos-grid">
+              <% documentos.forEach(doc => { %>
+                <div 
+                onclick="visualizarDocumento(this)"
+                class="documento-card" 
+                data-id="<%= doc.id %>" 
+                data-nome="<%= doc.estudante_nome %>"
+                data-titulo="<%= doc.titulo %>"
+                data-tipo="<%= doc.tipo %>" 
+                data-emissao="<%= new Date(doc.data_emissao).toLocaleDateString('pt-BR') %>" 
+                data-expiracao="<%= doc.data_expiracao ? new Date(doc.data_expiracao).toLocaleDateString('pt-BR') : 'Não definida' %>"
+                data-descricao="<%= doc.descricao %>">
+                  <h4><%= doc.titulo %></h4>
+                  <p><strong>Nome:</strong> <%= doc.estudante_nome %></p>
+                  <p><strong>Tipo:</strong> <%= doc.tipo %></p>
+                  <p><strong>Data de criação:</strong> <%= new Date(doc.data_emissao).toLocaleDateString('pt-BR') %></p>
+                  <p><strong>Data de Expiração:</strong>
+                    <%= doc.data_expiracao ? new Date(doc.data_expiracao).toLocaleDateString('pt-BR') : 'Não definida' %>
+                  </p>
+                </div>
+              <% }); %>
+            </div>
+          <% } else { %>
+            <p>Nenhum contrato disponível.</p>
+          <% } %>
+        </div>
+        <div id="detalhes-documento" class="section">
+          <button onclick="showSection('contratos')">🔙 Voltar</button>
+          <h3>Detalhes do Documento</h3>
+          <div id="conteudo-detalhes"></div>
+        </div>
+        
+        <div id="log" class="section">
+          <h3>Registro de Atividades</h3>
+          <table>
+            <thead>
+                <tr>
+                    <th>AÇÃO</th>
+                    <th>DETALHES</th>
+                    <th>DATA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(log_atividade.length > 0){ %>
+                    <% log_atividade.forEach(activity =>{  %>
+                        <tr>
+                            <td><%= activity.acao %></td>
+                            <td><%= activity.detalhes %></td>
+                            <td><%= new Date(activity.data_hora).toISOString().split('T')[0] %></td>
+                        </tr>
+                    <% });  %>   
+                <% }else{ %>
+                    <tr>
+                        <td colspan="8">Nenhuma acao encontrada.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        </div>
+
+        <div id="normas" class="section">
+          <nav>
+            <a href="#gerais">Normas Gerais</a>
+            <a href="#conduta">Conduta em Sala</a>
+            <a href="#avaliacao">Avaliação e Tarefas</a>
+            <a href="#disciplina">Disciplina</a>
+          </nav>
+        
+          <section id="gerais">
+            <h2>📚 Normas Gerais da Escola</h2>
+            <small><em>Aplicável a todos os alunos em qualquer área da escola</em></small>
+            <ul>
+              <li>Todos os alunos devem chegar no horário estabelecido para as aulas.</li>
+              <li>Faltas devem ser justificadas pelos responsáveis, preferencialmente por escrito.</li>
+              <li>O uso do uniforme completo é obrigatório em todos os dias letivos.</li>
+              <li>Uniformes devem estar limpos e em bom estado de conservação.</li>
+              <li>O respeito entre alunos, professores e demais funcionários é essencial.</li>
+              <li>É proibido qualquer tipo de agressão física, verbal ou moral dentro do ambiente escolar.</li>
+              <li>Zelar pelo patrimônio da escola é responsabilidade de todos.</li>
+              <li>Não é permitido danificar carteiras, paredes, livros ou qualquer outro bem da escola.</li>
+            </ul>
+          </section>
+        
+          <section id="conduta">
+            <h2>💡 Normas de Conduta em Sala de Aula</h2>
+            <small><em>Aplicável exclusivamente durante as aulas em sala</em></small>
+            <ul>
+              <li>O uso de celulares só será permitido com autorização do professor.</li>
+              <li>Durante provas, celulares devem ser desligados e guardados.</li>
+              <li>Não é permitido comer dentro da sala de aula, exceto com autorização.</li>
+              <li>O consumo de alimentos deve ser feito nos intervalos e no refeitório.</li>
+              <li>Levante a mão antes de falar ou fazer perguntas durante a aula.</li>
+              <li>Evite conversas paralelas para não atrapalhar a aula.</li>
+            </ul>
+          </section>
+        
+          <section id="avaliacao">
+            <h2>🧭 Normas de Avaliação e Tarefas</h2>
+            <small><em>Aplicável a todos os momentos de entrega de atividades e provas</em></small>
+            <ul>
+              <li>Trabalhos escolares devem ser entregues no prazo estipulado pelo professor.</li>
+              <li>Atrasos sem justificativa podem acarretar em perda parcial ou total da nota.</li>
+              <li>Faltas em provas devem ser justificadas para remarcar a avaliação.</li>
+              <li>É proibido qualquer tipo de fraude ou cola durante as avaliações.</li>
+            </ul>
+          </section>
+        
+          <section id="disciplina">
+            <h2>🛑 Normas Disciplinares</h2>
+            <small><em>Aplicável a todos os comportamentos dentro da escola</em></small>
+            <ul>
+              <li>Atos de indisciplina serão avaliados pela coordenação pedagógica.</li>
+              <li>Advertências podem ser verbais, escritas ou resultar em suspensão.</li>
+              <li>A escola prioriza o diálogo e atitudes corretas em conjunto.</li>
+              <li>Os responsáveis serão comunicados em caso de comportamento inadequado.</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <script src="/assets/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #ecf0f1;
+}
+/* Top Bar */
+.top-bar {
+    width: 100%;
+    background: linear-gradient(135deg, #003366, #336699);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 50px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+  
+    .main-content {
+      margin-left: 0;
+    }
+  
+    .top-bar {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .documento-card {
+      width: 100%;
+    }
+  }
+.top-bar .clickable {
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+.top-bar .clickable:hover {
+    color: #f39c12;
+}
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #003366;
+    color: white;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    padding-top: 20px;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+.sidebar ul li {
+    padding: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease, transform 0.2s;
+}
+.sidebar ul li:hover {
+    background: #336699;
+    transform: scale(1.05);
+}
+/* Área Principal */
+.main-content {
+    margin-left: 250px;
+    margin-top: 50px;
+    padding: 20px;
+    width: calc(100% - 250px);
+}
+/* Seções Ocultas */
+.section {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.section.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilo da Tabela */
+.container {
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #2c3e50;
+    color: white;
+}
+
+tr:hover {
+    background: #bdc3c7;
+}
+
+.actions {
+    text-align: center;
+}
+
+.edit-btn, .delete-btn {
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.edit-btn {
+    color: white;
+    background: #2980b9;
+}
+
+.edit-btn:hover {
+    background: #1f6690;
+}
+
+.delete-btn {
+    color: white;
+    background: #c0392b;
+}
+
+.delete-btn:hover {
+    background: #a93226;
+}
+
+.container-cadastro {
+    max-width: 600px;
+    margin: 30px auto;
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.container-cadastro h2, .container-cadastro h3 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #34495e;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+}
+
+.btn-cadastrar {
+    width: 100%;
+    padding: 12px;
+    background: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-cadastrar:hover {
+    background: #34495e;
+}
+
+#botao_cadastro:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.submenu {
+    display: none;
+    padding-left: 15px;
+    background: #466e97;
+}
+
+#logout-button:hover{
+    background-color: #a93226;
+}
+
+#Cadastrar {
+    background: #2980b9;
+}
+
+.tabela-estudantes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.tabela-estudantes th, .tabela-estudantes td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.tabela-estudantes th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+
+
+
+
+.container-contrato {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.container-contrato h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container-contrato .form-group {
+    margin-bottom: 20px;
+}
+
+.container-contrato label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.container-contrato input[type="text"],
+.container-contrato select,
+.container-contrato textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.container-contrato textarea {
+    resize: vertical;
+}
+
+.container-contrato button {
+    background-color: #1a73e8;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.container-contrato button:hover {
+    background-color: #0f5ad3;
+}
+
+.container-contrato .especificacao {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.container-contrato .remove-btn {
+    background-color: #e53935;
+    margin-top: 10px;
+}
+
+.container-contrato .remove-btn:hover {
+    background-color: #c62828;
+}
+
+.container-contrato .hidden {
+    display: none;
+}
+
+/* Novo estilo para o checkbox */
+.checkbox-highlight {
+    display: flex;
+    align-items: center; /* Alinha o checkbox e o texto no centro verticalmente */
+}
+
+.checkbox-highlight input[type="checkbox"] {
+    margin: 0;
+    vertical-align: middle; /* Alinha verticalmente o checkbox */
+    width: auto;  /* Não estica o checkbox */
+    height: auto; /* Garante que o tamanho do checkbox esteja adequado */
+}
+.erro-mensagem {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    display: block;
+  }
+  
+  .documentos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .documento-card {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 16px;
+    width: 280px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .documento-card h4 {
+    margin-bottom: 10px;
+  } 
+  .documento-card p {
+    margin: 6px 0;
+  }
+  .documento-card button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #003366;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .documento-card button:hover {
+    background-color: #336699;
+  }
