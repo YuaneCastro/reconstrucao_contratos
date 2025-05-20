@@ -1,12 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" href="/assets/css/telaerro.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Erro de Login</title>
+  <link rel="stylesheet" href="/assets/css/telaerro.css" />
 </head>
 <body>
-    <h1><%= message %></h1>
+  <div class="login-wrapper">
+    <a href="login-cordenacao" class="logo-container">
+      <img src="/assets/images/conexaokamba.svg" alt="Logotipo" class="logo-img" />
+    </a>
+
+    <div class="login-container">
+      <div class="login-form">
+        <h2>Erro</h2>
+        <span class="error-message"><%= message %></span>
+        <a href="login-cordenacao">
+          <button type="button">Voltar para o login</button>
+        </a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
