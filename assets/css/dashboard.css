@@ -418,6 +418,11 @@ table tbody tr td[colspan] {
   align-items: center;
 }
 
+.logodashboard
+{
+  padding-bottom: 5px;
+}
+
 #conteudo-detalhes h2 {
   text-align: center;
   font-size: 26px;
