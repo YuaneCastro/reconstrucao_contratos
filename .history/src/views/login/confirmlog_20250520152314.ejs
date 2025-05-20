@@ -1,0 +1,33 @@
+<!-- views/confirm.ejs -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Cadastro</title>
+    <link rel="stylesheet" href="/assets/css/login-cordenacao.css">
+</head>
+<body>
+    <div class="login-wrapper">
+
+        <h1>Confirmar Login</h1>
+        <p>Digite o código de verificação que você recebeu por e-mail.</p>
+
+        <div class="login-container">
+            <form id="otpForm" class="login-form">
+                
+                <div class="input-group">
+                    <input type="text" id="otpInput" name="codigo" placeholder="Código de Verificação" required>
+                </div>
+
+                <small id="confirmError" class="error-message"></small>
+                <div class="input-group">
+                    <button type="submit" id="confirmarBtn">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/assets/js/confirmlog.js"></script>
+</body>
+</html>

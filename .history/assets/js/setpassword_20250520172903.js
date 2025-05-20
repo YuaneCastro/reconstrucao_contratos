@@ -1,0 +1,45 @@
+document.addEventListener("DOMContentLoaded", function () {
+    // Captura o token da URL
+    const token = window.location.pathname.split("/").pop();
+
+    // Evento de restrição de caracteres no campo de senha
+    document.getElementById("senha").addEventListener("input", function(event) {
+        // Remove qualquer caractere que não seja número
+        this.value = this.value.replace(/\D/g, '');
+    });
+
+    document.getElementById("passwordForm").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const senha = document.getElementById("senha").value;
+
+        // Regex para senha contendo somente números e sem espaços
+        const passwordRegex = /^\d{4,}$/;
+
+        // Validação da senha
+        if (!passwordRegex.test(senha)) {
+            alert("A senha deve ter no mínimo 4 caracteres e ser composta apenas por números.");
+            return;
+        }
+
+        try {
+            // Envia a senha para o backend
+            const response = await fetch(`/set-password/${token}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ senha })
+            });
+
+            if (response.ok) {
+                alert("Senha redefinida com sucesso!");
+                window.location.href = "/login";
+            } else {
+                const errorMessage = await response.text(); // Captura a mensagem de erro do backend
+                alert(errorMessage); // Exibe a mensagem de erro para o usuário
+            }
+        } catch (error) {
+            alert("Erro de conexão. Por favor, tente mais tarde.");
+            console.error(error);
+        }
+    });
+});
