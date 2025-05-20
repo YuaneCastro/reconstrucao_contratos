@@ -181,107 +181,35 @@ table tbody tr td[colspan] {
 }
 /* Responsividade (opcional) */
 @media screen and (max-width: 768px) {
-  body {
-    flex-direction: column;
+  table, thead, tbody, th, td, tr {
+    display: block;
   }
 
-  .sidebar {
-    width: 100%;
-    height: auto;
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
+  }
+
+  tbody td {
     position: relative;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 10px;
+    padding-left: 50%;
   }
 
-  .sidebar h2 {
-    font-size: 1.2rem;
-    margin-bottom: 0;
-  }
-
-  .sidebar ul {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    padding: 0;
-  }
-
-  .sidebar ul li {
-    padding: 8px 12px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    font-size: 0.9rem;
-  }
-
-  .main {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 20px;
-    height: auto;
-  }
-
-  .topbar .actions {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-  }
-
-  .topbar .actions button {
-    margin-top: 10px;
-  }
-
-  .content {
-    padding: 15px;
-  }
-
-  .documentos-grid {
-    justify-content: center;
-  }
-
-  .documento-card {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  #conteudoContrato {
-    padding: 30px 20px;
-    margin: 20px 10px;
-    font-size: 16px;
-  }
-
-  .assinatura {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .assinatura div {
-    width: 100%;
-  }
-
-  #detalhes-documento {
-    padding: 20px;
-    margin: 20px 10px;
-  }
-
-  #visualizacaoContrato button {
-    width: 100%;
-    max-width: 300px;
-    font-size: 1rem;
-  }
-
-  #visualizacaoContrato .buttons-container {
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
+  tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 16px;
+    font-weight: bold;
+    color: #666;
   }
 }
-
 
 
 /*codigo de atualizar o contrato*/
