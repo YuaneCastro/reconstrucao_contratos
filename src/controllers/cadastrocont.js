@@ -7,7 +7,7 @@ exports.telapass = async (req, res) =>{
     const tokenData = await buscarToken(token);
     // se o token nao existir pouco provavel
     if (!tokenData) {
-        const message = "O tempo disponível para a redefinição de senha de Senha foi encerrado. Para solicitar uma nova oportunidade de redefinir a senha, por favor, entre em contacto com a instituição através de um dos seguintes meios: Telefone: +244 999 999 999, E-mail: apoio@instituicao.co.ao, Localização: Rua da Liberdade, nº 45, Luanda — Angola.";
+        const message = "O tempo disponível para a redefinição de senha foi encerrado. Para solicitar uma nova oportunidade de redefinir a senha, por favor, entre em contacto com a instituição através de um dos seguintes meios: Telefone: +244 999 999 999, E-mail: apoio@instituicao.co.ao, Localização: Rua da Liberdade, nº 45, Luanda — Angola.";
         return res.redirect("/Telaerro?message=" + encodeURIComponent(message));
     }
     const dataExpiracao = moment(tokenData.created_at).add(1, 'hours');

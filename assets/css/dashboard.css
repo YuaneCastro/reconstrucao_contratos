@@ -412,6 +412,17 @@ table tbody tr td[colspan] {
   margin-top: 10px;
 }
 
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logodashboard
+{
+  padding-bottom: 5px;
+}
+
 #conteudo-detalhes h2 {
   text-align: center;
   font-size: 26px;
