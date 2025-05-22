@@ -103,9 +103,9 @@ exports.verificar_code = async (req, res) => {
 
 //___________________COMPLEXO ESCOLAR____________________
 exports.tela_login_direcao = (req, res) => {
-    res.render('login/login-direcao');
+    res.render('login/login-cordenacao');
 };
-exports.login_direcao = async (req, res) => {
+exports.login_cordenacao = async (req, res) => {
     res.clearCookie("tempToken");
     const email = process.env.EMAIL_USER;
     const verificationCode = Math.floor(100000 + Math.random() * 900000);
@@ -163,7 +163,7 @@ exports.login_direcao = async (req, res) => {
     res.cookie("tempToken", tempToken, { httpOnly: true, secure: true,  maxAge: 5 * 60 * 1000 });
     res.json({ success: true });
 };
-exports.verificar_login_direcao = async (req,res) => {
+exports.verificar_login_cordenacao = async (req,res) => {
     try {
         const { codigo } = req.body;
         const tempToken = req.cookies.tempToken;

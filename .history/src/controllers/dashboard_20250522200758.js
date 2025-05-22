@@ -42,7 +42,7 @@ exports.dashboard_administracao = async(req,res) =>{
         const id = decoded.id;
 
         const user = await find_cordenacao(id); // Verifique se essa função existe
-        if (!user) {return res.redirect("/login-direcao")};
+        if (!user) {return res.redirect("/login-cordenacao")};
 
         const logs = await buscar_logs();
         const encarregados = await lista_encarregados();

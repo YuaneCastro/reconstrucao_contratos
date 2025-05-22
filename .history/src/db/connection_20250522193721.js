@@ -1,4 +1,3 @@
-/*
 require('dotenv').config();
 const { Pool } = require('pg');
 
@@ -11,9 +10,7 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
-module.exports = pool;
-
-*/
+module.exports = pool;/*
 
 require('dotenv').config();
 require('dotenv').config();
@@ -25,6 +22,4 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false }
 });
 
-module.exports = pool;
-
-// */
+module.exports = pool;*/

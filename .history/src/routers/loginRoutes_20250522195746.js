@@ -12,9 +12,9 @@ router.post('/confirmlog', authController.verificar_code);
 
 //complexo escolar
 router.get('/login-direcao', authController.tela_login_direcao);
-router.post('/login-direcao',authController.login_direcao);
 
-router.post("/confirmar-codigo", authController.verificar_login_direcao);
+router.post('/login-direcao',authController.login_direcao);
+router.post("/confirmar-codigo", authController.verificar_login_cordenacao);
 
 
 

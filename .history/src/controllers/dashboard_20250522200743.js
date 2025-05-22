@@ -19,7 +19,7 @@ exports.dashboard_secretaria = async(req,res) =>{
         const id = decoded.id;
 
         const user = await find_cordenacao(id); // Verifique se essa função existe
-        if (!user) {return res.redirect("/login-direcao")};
+        if (!user) {return res.redirect("/login-cordenacao")};
 
         const encarregados = await lista_encarregados();
         const estudantes = await lista_estudantes();
@@ -36,13 +36,13 @@ exports.dashboard_secretaria = async(req,res) =>{
 exports.dashboard_administracao = async(req,res) =>{
     try {
         const token = req.cookies.token;
-        if (!token) {return res.redirect("/login-direcao")};
+        if (!token) {return res.redirect("/login-cordenacao")};
 
         const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
         const id = decoded.id;
 
         const user = await find_cordenacao(id); // Verifique se essa função existe
-        if (!user) {return res.redirect("/login-direcao")};
+        if (!user) {return res.redirect("/login-cordenacao")};
 
         const logs = await buscar_logs();
         const encarregados = await lista_encarregados();
