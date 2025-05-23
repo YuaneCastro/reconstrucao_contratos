@@ -28,7 +28,7 @@
     height: 100vh;
   } 
   .sidebar h2 {
-    color: #ffffff;
+    color: #bfa046;
     margin-bottom: 20px;
     font-size: 1.8rem;
   }
@@ -41,7 +41,7 @@
     transition: background 0.3s;
   }
   .sidebar ul li:hover {
-    background-color: #0054a9;/* #bfa046 com transparência */
+    background-color: rgba(191, 160, 70, 0.2); /* #bfa046 com transparência */
   }
   .sidebar .footer {
     font-size: 0.9rem;
@@ -79,7 +79,7 @@
     cursor: pointer;
   }
   .topbar .actions button:hover {
-    background-color: red;
+    background-color: #a88d3e;
   }
   /* CONTENT */
   .content {
