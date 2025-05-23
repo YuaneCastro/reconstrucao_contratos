@@ -291,10 +291,10 @@ const atualizar_logins_direcao = async (id , role) => {
         console.error("❌ Erro ao atualizar login:", error);
     }
 };
-const find_direcao = async (id) => {
+const find_cordenacao = async (id) => {
     try{
         const result = await pool.query(
-            "SELECT id, email, ip FROM logins_direcao WHERE id = $1 LIMIT 1", [id]
+            "SELECT id, email, ip FROM logins_coordenacao WHERE id = $1 LIMIT 1", [id]
         );
         return result.rows.length > 0 ? result.rows[0] : null;
     }catch(error){
@@ -843,8 +843,8 @@ module.exports = {
     buscaridestudante,
     enviar_codigo,
     buscar_codigoOTP,
-    atualizar_logins_direcao,
-    find_direcao,
+    atualizar_login_coordenacao,
+    find_cordenacao,
     buscar_logs,
     lista_encarregados,
     lista_estudantes,

@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken"); 
-const { logEvent, buscar_encarregados_associados_contratos, log_atividades_encarregados, buscar_documentos_nao_emitidos, assinarContrato, verificarAssinatura, getContratoPorId, buscarContratosPendentes, buscar_documento_contrato, buscar_documento_comunicado, buscarDocumentosDoEncarregado, enviar_documento, guardar_documento, log_atividades, buscar_estudantes_associados, gerarTokenRedefinicao, deletarToken, buscar_encarregado_id, eliminar_tudo, verifica_estudante, atualizarEncarregado, atualizar_estudante, lista_coordenacao, lista_encarregados ,lista_estudantes, findEmail, buscar_logs, find_direcao } = require('../db');
+const { logEvent, buscar_encarregados_associados_contratos, log_atividades_encarregados, buscar_documentos_nao_emitidos, assinarContrato, verificarAssinatura, getContratoPorId, buscarContratosPendentes, buscar_documento_contrato, buscar_documento_comunicado, buscarDocumentosDoEncarregado, enviar_documento, guardar_documento, log_atividades, buscar_estudantes_associados, gerarTokenRedefinicao, deletarToken, buscar_encarregado_id, eliminar_tudo, verifica_estudante, atualizarEncarregado, atualizar_estudante, lista_coordenacao, lista_encarregados ,lista_estudantes, findEmail, buscar_logs, find_cordenacao } = require('../db');
 const nodemailer = require('nodemailer');
 
 
@@ -18,7 +18,7 @@ exports.dashboard_secretaria = async(req,res) =>{
         const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
         const id = decoded.id;
 
-        const user = await find_direcao(id); // Verifique se essa função existe
+        const user = await find_cordenacao(id); // Verifique se essa função existe
         if (!user) {return res.redirect("/login-direcao")};
 
         const encarregados = await lista_encarregados();

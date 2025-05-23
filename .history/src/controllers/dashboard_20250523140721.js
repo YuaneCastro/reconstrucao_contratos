@@ -18,7 +18,7 @@ exports.dashboard_secretaria = async(req,res) =>{
         const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
         const id = decoded.id;
 
-        const user = await find_direcao(id); // Verifique se essa função existe
+        const user = await find_cordenacao(id); // Verifique se essa função existe
         if (!user) {return res.redirect("/login-direcao")};
 
         const encarregados = await lista_encarregados();

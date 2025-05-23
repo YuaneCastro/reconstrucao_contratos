@@ -294,7 +294,7 @@ const atualizar_logins_direcao = async (id , role) => {
 const find_direcao = async (id) => {
     try{
         const result = await pool.query(
-            "SELECT id, email, ip FROM logins_direcao WHERE id = $1 LIMIT 1", [id]
+            "SELECT id, email, ip FROM logins_coordenacao WHERE id = $1 LIMIT 1", [id]
         );
         return result.rows.length > 0 ? result.rows[0] : null;
     }catch(error){

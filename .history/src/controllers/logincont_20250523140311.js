@@ -218,7 +218,7 @@ exports.verificar_login_direcao = async (req,res) => {
 
         // Atualiza login de acordo com a role identificada
         const usuarioId = role === "administracao" ? id : id_secretaria;
-        await atualizar_logins_direcao(usuarioId, role);
+        await atualizar_login_coordenacao(usuarioId, role);
 
         // Gera novo token de autenticação
         const authToken = jwt.sign({ id:usuarioId , role }, process.env.TOKEN_SECRET, { expiresIn: "30d" });
