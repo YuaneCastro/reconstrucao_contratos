@@ -47,7 +47,7 @@ body {
     background: #003366;
     color: white;
     position: fixed;
-    top: 50px;
+    top: 0;
     left: 0;
     padding-top: 20px;
 }
