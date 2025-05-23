@@ -139,7 +139,7 @@ exports.login_direcao = async (req, res) => {
     await transporter.sendMail({
         from: process.env.EMAIL_USER,
         to: process.env.EMAIL_USER,
-        subject: '"Código de Verificação - Administração',
+        subject: '"Código de Verificação - Administracao',
         text: `Seu código de verificação é: ${verificationCode}`,
     });
 
