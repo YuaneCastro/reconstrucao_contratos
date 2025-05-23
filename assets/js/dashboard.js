@@ -11,12 +11,6 @@ function showSection(id) {
         window.location.href = '/login';
     }
 });
-
-  function toggleSidebar() {
-    document.querySelector('.sidebar').classList.toggle('active');
-  }
-
-
 function handleViewContract(button) {
   // Limpar o conteúdo da div antes de adicionar os novos dados
   const conteudoContrato = document.getElementById('conteudoContrato');
