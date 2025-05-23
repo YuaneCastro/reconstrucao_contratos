@@ -16,6 +16,7 @@ router.post('/update_encarregado', authenticateToken, authorizeRole('secretaria'
 router.post('/deletar_encarregados', authenticateToken, authorizeRole( 'secretaria'), telapCont.deletar);
 router.post('/redifinir_senha',authenticateToken, authorizeRole( 'secretaria'), telapCont.redifinir_senha);
 
+
 router.get('/dashboard-coordenacao', authenticateToken, authorizeRole('coordenacao'),telapCont.dashboard_coordenacao);
 router.post('/enviar_documento',authenticateToken, authorizeRole('coordenacao'), telapCont.enviar_documento);   
 router.post('/guardar_documento',authenticateToken, authorizeRole('coordenacao'), telapCont.guardar_documentos);

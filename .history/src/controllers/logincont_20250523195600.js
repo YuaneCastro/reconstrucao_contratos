@@ -103,7 +103,7 @@ exports.verificar_code = async (req, res) => {
 
 //___________________COMPLEXO ESCOLAR____________________
 exports.tela_login_direcao = (req, res) => {
-    res.render('login/login-direcao');
+    res.render('login/login-coordenacao');
 };
 exports.login_direcao = async (req, res) => {
     res.clearCookie("tempToken");

@@ -13,7 +13,7 @@ const pool = new Pool({
 
 module.exports = pool;
 
-*/
+/
 
 require('dotenv').config();
 require('dotenv').config();
@@ -27,4 +27,4 @@ const pool = new Pool({
 
 module.exports = pool;
 
-
+*/

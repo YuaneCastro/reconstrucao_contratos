@@ -139,7 +139,7 @@ exports.login_direcao = async (req, res) => {
     await transporter.sendMail({
         from: process.env.EMAIL_USER,
         to: process.env.EMAIL_USER,
-        subject: '"Código de Verificação - Coordenação',
+        subject: '"Código de Verificação - Administração',
         text: `Seu código de verificação é: ${verificationCode}`,
     });
 
@@ -191,7 +191,7 @@ exports.verificar_login_direcao = async (req,res) => {
         const EMAIL_USER_SECRETARIA = process.env.EMAIL_USER_SECRETARIA;
 
         // Buscar os dois códigos OTP mais recentes
-        const codigo_coordenacao = await buscar_codigoOTP(id, EMAIL_USER_coordenacao);
+        const codigo_coordenacao = await buscar_codigoOTP(id, EMAIL_USER_ADMIN);
         const codigo_secretaria = await buscar_codigoOTP(id_secretaria, EMAIL_USER_SECRETARIA);
         
         //console.log("Código digitado pelo usuário:", codigo);
@@ -204,8 +204,8 @@ exports.verificar_login_direcao = async (req,res) => {
         let role = null;
         // Verifica se o código digitado corresponde ao da administração
         if (codigo_coordenacao && codigo_coordenacao.codigo_otp) {
-            const matchAdmin = await bcrypt.compare(codigo, codigo_coordenacao.codigo_otp);
-            if (matchAdmin) role = "coordenacao";
+            const matchAdmin = await bcrypt.compare(codigo, codigo_admin.codigo_otp);
+            if (matchAdmin) role = "administracao";
         }
         // Se não for admin, verifica secretaria
         if (!role && codigo_secretaria && codigo_secretaria.codigo_otp) {
@@ -217,7 +217,7 @@ exports.verificar_login_direcao = async (req,res) => {
         }
 
         // Atualiza login de acordo com a role identificada
-        const usuarioId = role === "coordenacao" ? id : id_secretaria;
+        const usuarioId = role === "administracao" ? id : id_secretaria;
         await atualizar_logins_direcao(usuarioId, role);
 
         // Gera novo token de autenticação

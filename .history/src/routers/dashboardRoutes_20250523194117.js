@@ -8,15 +8,15 @@ router.get('/Telaerro', telapCont.telaerror);
 
 
 // -----------coordenacao--------------
+router.get('/dashboard-coordenacao', authenticateToken, authorizeRole('coordenacao'),telapCont.dashboard_administracao);
+router.get('/dashboard-secretaria', authenticateToken, authorizeRole('secretaria'),telapCont.dashboard_secretaria);
+
+router.post('/update_student', authenticateToken, authorizeRole('coordenacao', 'secretaria'), telapCont.update_Student);
+router.post('/update_encarregado', authenticateToken, authorizeRole('coordenacao', 'secretaria'), telapCont.update_encarregado);
+router.post('/deletar_encarregados', authenticateToken, authorizeRole('coordenacao', 'secretaria'), telapCont.deletar);
+router.post('/redifinir_senha',authenticateToken, authorizeRole('coordenacao', 'secretaria'), telapCont.redifinir_senha);
 router.post('/associados',authenticateToken, authorizeRole('coordenacao', 'secretaria'), telapCont.encarregados_associados);
 
-router.get('/dashboard-secretaria', authenticateToken, authorizeRole('secretaria'),telapCont.dashboard_secretaria);
-router.post('/update_student', authenticateToken, authorizeRole( 'secretaria'), telapCont.update_Student);
-router.post('/update_encarregado', authenticateToken, authorizeRole('secretaria'), telapCont.update_encarregado);
-router.post('/deletar_encarregados', authenticateToken, authorizeRole( 'secretaria'), telapCont.deletar);
-router.post('/redifinir_senha',authenticateToken, authorizeRole( 'secretaria'), telapCont.redifinir_senha);
-
-router.get('/dashboard-coordenacao', authenticateToken, authorizeRole('coordenacao'),telapCont.dashboard_coordenacao);
 router.post('/enviar_documento',authenticateToken, authorizeRole('coordenacao'), telapCont.enviar_documento);   
 router.post('/guardar_documento',authenticateToken, authorizeRole('coordenacao'), telapCont.guardar_documentos);
 

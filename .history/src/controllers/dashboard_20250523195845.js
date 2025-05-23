@@ -53,7 +53,7 @@ exports.dashboard_coordenacao = async(req,res) =>{
         const documentos = await buscar_documentos_nao_emitidos();
         const log_atividade_encarregados = await log_atividades_encarregados();
         //console.log(documentos)
-        res.render("dashboard/dashboard-coordenacao", { email: user.email, logs, encarregados, estudantes, coordenacao, comunicado, contrato, documentos, log_atividade_encarregados});
+        res.render("dashboard/dashboard-administracao", { email: user.email, logs, encarregados, estudantes, coordenacao, comunicado, contrato, documentos, log_atividade_encarregados});
     } catch (error) {
         console.error("Erro ao carregar a dashboard:", error);
         return res.redirect("/Telaerro?message=" + encodeURIComponent("Precisa fazer login para acassar esta tela."));

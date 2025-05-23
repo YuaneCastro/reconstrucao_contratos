@@ -139,7 +139,7 @@ exports.login_direcao = async (req, res) => {
     await transporter.sendMail({
         from: process.env.EMAIL_USER,
         to: process.env.EMAIL_USER,
-        subject: '"Código de Verificação - Coordenação',
+        subject: '"Código de Verificação - Administração',
         text: `Seu código de verificação é: ${verificationCode}`,
     });
 
@@ -204,7 +204,7 @@ exports.verificar_login_direcao = async (req,res) => {
         let role = null;
         // Verifica se o código digitado corresponde ao da administração
         if (codigo_coordenacao && codigo_coordenacao.codigo_otp) {
-            const matchAdmin = await bcrypt.compare(codigo, codigo_coordenacao.codigo_otp);
+            const matchAdmin = await bcrypt.compare(codigo, codigo_admin.codigo_otp);
             if (matchAdmin) role = "coordenacao";
         }
         // Se não for admin, verifica secretaria

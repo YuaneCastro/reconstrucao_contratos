@@ -53,7 +53,7 @@
             if (response.ok && data.success) {
                 if (data.role === "secretaria") {
                     window.location.href = '/dashboard-secretaria';
-                } else if (data.role === "coordenacao") {
+                } else if (data.role === "administracao") {
                     window.location.href = '/dashboard-coordenacao';
                 } else {
                     // Redireciona pra coordenacao se não for nenhum dos dois
