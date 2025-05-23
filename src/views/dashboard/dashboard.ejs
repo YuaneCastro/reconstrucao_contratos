@@ -9,23 +9,26 @@
 <body>
   <div class="container">
     <!-- SIDEBAR -->
-    <nav class="sidebar">
-      <div>
-        <div class="logodashboard">
-         <a href="login-cordenacao" class="logo-container">
-      <img src="/assets/images/conexaokamba.svg" alt="Logotipo" class="logo-img" />
-    </a> 
-        </div>
-        <ul>
-            <strong>
+   <nav class="sidebar hidden" id="sidebar">
+    <div>
+      <div class="logodashboard">
+        <a href="login-cordenacao" class="logo-container">
+          <img src="/assets/images/conexaokamba.svg" alt="Logotipo" class="logo-img" />
+        </a>
+      </div>
+      <ul>
+        <strong>
           <li onclick="showSection('dashboard')">DASHBOARD</li>
           <li onclick="showSection('estudantes')">ESTUDANTES</li>
-          <li onclick="showSection('contratos')"> DOCUMENTOS</li>
+          <li onclick="showSection('contratos')">DOCUMENTOS</li>
           <li onclick="showSection('log')">ATIVIDADES</li>
-          <li onclick="showSection('normas')"> NORMAS</li>
-        </strong>     
-        </ul>
-      </div>
+          <li onclick="showSection('normas')">NORMAS</li>
+        </strong>
+      </ul>
+    </div>
+  </nav>
+</main>
+
 
       <div class="footer">
         <p><strong>Contato:</strong></p>
@@ -39,6 +42,7 @@
     <main class="main">
       <!-- TOPBAR -->
       <div class="topbar">
+        <button class="hamburger" onclick="toggleSidebar()">☰</button>
         <div class="greeting">Olá, <strong><%= nome %></strong>!</div>
         <div class="actions">
           <button id="logout-button" onclick="informar()">Sair</button>
