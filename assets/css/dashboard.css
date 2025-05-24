@@ -416,7 +416,6 @@ table tbody tr td[colspan] {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20px;
 }
 
 .logodashboard
