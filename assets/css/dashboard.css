@@ -71,14 +71,14 @@
   .topbar .actions button {
     border: none;
     background-color: #7c7b77;
-    color: red;
+    color: white;
     padding: 8px 15px;
     margin-left: 10px;
     border-radius: 5px;
     cursor: pointer;
   }
   .topbar .actions button:hover {
-    background-color: #a88d3e;
+    background-color: red;
   }
   /* CONTENT */
   .content {
