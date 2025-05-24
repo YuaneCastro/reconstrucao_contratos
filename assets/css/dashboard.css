@@ -58,7 +58,7 @@
   /* TOPBAR */
   .topbar {
     height: 60px;
-    background: linear-gradient(135deg, #003366, #336699);
+    background-color: none;
     color: white;
     display: flex;
     justify-content: space-between;
