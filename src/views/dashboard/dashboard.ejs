@@ -7,52 +7,43 @@
   <link rel="stylesheet" href="/assets/css/dashboard.css">
 </head>
 <body>
- <div class="container">
-  <!-- SIDEBAR -->
-  <nav class="sidebar" id="sidebar">
-    <div>
-      <div class="logodashboard">
-        <a href="login-cordenacao" class="logo-container">
-          <img src="/assets/images/conexaokamba.svg" alt="Logotipo" class="logo-img" />
-        </a>
-      </div>
-      <ul>
-        <strong>
+  <div class="container">
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+      <div>
+        <div class="logodashboard">
+         <a href="login-cordenacao" class="logo-container">
+      <img src="/assets/images/conexaokamba.svg" alt="Logotipo" class="logo-img" />
+    </a> 
+        </div>
+        <ul>
+            <strong>
           <li onclick="showSection('dashboard')">DASHBOARD</li>
           <li onclick="showSection('estudantes')">ESTUDANTES</li>
-          <li onclick="showSection('contratos')">DOCUMENTOS</li>
+          <li onclick="showSection('contratos')"> DOCUMENTOS</li>
           <li onclick="showSection('log')">ATIVIDADES</li>
-          <li onclick="showSection('normas')">NORMAS</li>
-        </strong>
-      </ul>
-    </div>
-
-    <div class="footer">
-      <p><strong>Contato:</strong></p>
-      <p>📞 (99) 99999-9999</p>
-      <p>📧 contato@escola.com</p>
-      <p>📍 Rua das Flores, 123 – Centro</p>
-    </div>
-  </nav>
-
-  <!-- CONTEÚDO PRINCIPAL -->
-  <main class="main">
-    <!-- TOPBAR -->
-    <div class="topbar">
-      <div class="hamburger" id="hamburger" onclick="toggleSidebar()">
-        <span></span>
-        <span></span>
-        <span></span>
+          <li onclick="showSection('normas')"> NORMAS</li>
+        </strong>     
+        </ul>
       </div>
-      <div class="greeting">Olá, <strong><%= nome %></strong>!</div>
-      <div class="actions">
-        <button id="logout-button" onclick="informar()">Sair</button>
-      </div>
-    </div>
 
-    <!-- Conteúdo aqui -->
-  </main>
-</div>
+      <div class="footer">
+        <p><strong>Contato:</strong></p>
+        <p>📞 (99) 99999-9999</p>
+        <p>📧 contato@escola.com</p>
+        <p>📍 Rua das Flores, 123 – Centro</p>
+      </div>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main">
+      <!-- TOPBAR -->
+      <div class="topbar">
+        <div class="greeting">Olá, <strong><%= nome %></strong>!</div>
+        <div class="actions">
+          <button id="logout-button" onclick="informar()">Sair</button>
+        </div>
+      </div>
 
       <!-- CONTEÚDO DINÂMICO -->
       <div class="content">
