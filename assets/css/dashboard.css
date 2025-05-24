@@ -23,7 +23,7 @@
     flex-direction: column;
     justify-content: space-between;
     position: fixed;
-    top: 0;
+    top: 60px;
     left: 0;
     height: 100vh;
   } 
