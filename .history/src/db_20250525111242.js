@@ -827,11 +827,11 @@ const info_dashboard_secretaria = async () =>{
     const result = await pool.query(`SELECT 
     (SELECT COUNT(*) FROM estudantes) AS total_estudantes,
     (SELECT COUNT(*) FROM encarregados) AS total_encarregados,
-    (SELECT COUNT(*) FROM documentos) AS total_documemntos,
     (SELECT COUNT(*) FROM documentos WHERE tipo = 'contrato') AS total_contratos,
     (SELECT COUNT(*) FROM documentos WHERE tipo = 'comunicado') AS total_documentos;
   `);
-  return result.rows[0];  // << pegar só o objeto, não o array
+
+  return result.rows;
 }
 
 module.exports = {
@@ -881,6 +881,5 @@ module.exports = {
     assinarContrato,
     buscar_documentos_nao_emitidos,
     log_atividades_encarregados,
-    buscar_encarregados_associados_contratos,
-    info_dashboard_secretaria
+    buscar_encarregados_associados_contratos
 };

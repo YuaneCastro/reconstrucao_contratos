@@ -28,8 +28,8 @@ exports.dashboard_secretaria = async(req,res) =>{
         const comunicado = await buscar_documento_comunicado();
         const log_atividade_encarregados = await log_atividades_encarregados();
         const info_dashboard = await info_dashboard_secretaria();
-        //console.log(info_dashboard)
-        res.render("dashboard/dashboard-secretaria", { logs, email: user.email, encarregados, estudantes, comunicado, info_dashboard, contrato, log_atividade_encarregados});
+        console.log(info_dashboard)
+        res.render("dashboard/dashboard-secretaria", {info_dashboard, logs, email: user.email, encarregados, estudantes, comunicado, contrato, log_atividade_encarregados});
     } catch (error) {
         console.error("Erro ao carregar a dashboard:", error);
         return res.redirect("/Telaerro?message=" + encodeURIComponent("Precisa fazer login para acassar esta tela."));

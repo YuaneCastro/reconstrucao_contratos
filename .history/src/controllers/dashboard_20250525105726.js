@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken"); 
-const { info_dashboard_secretaria, logEvent, buscar_encarregados_associados_contratos, log_atividades_encarregados, buscar_documentos_nao_emitidos, assinarContrato, verificarAssinatura, getContratoPorId, buscarContratosPendentes, buscar_documento_contrato, buscar_documento_comunicado, buscarDocumentosDoEncarregado, enviar_documento, guardar_documento, log_atividades, buscar_estudantes_associados, gerarTokenRedefinicao, deletarToken, buscar_encarregado_id, eliminar_tudo, verifica_estudante, atualizarEncarregado, atualizar_estudante, lista_coordenacao, lista_encarregados ,lista_estudantes, findEmail, buscar_logs, find_direcao } = require('../db');
+const { logEvent, buscar_encarregados_associados_contratos, log_atividades_encarregados, buscar_documentos_nao_emitidos, assinarContrato, verificarAssinatura, getContratoPorId, buscarContratosPendentes, buscar_documento_contrato, buscar_documento_comunicado, buscarDocumentosDoEncarregado, enviar_documento, guardar_documento, log_atividades, buscar_estudantes_associados, gerarTokenRedefinicao, deletarToken, buscar_encarregado_id, eliminar_tudo, verifica_estudante, atualizarEncarregado, atualizar_estudante, lista_coordenacao, lista_encarregados ,lista_estudantes, findEmail, buscar_logs, find_direcao } = require('../db');
 const nodemailer = require('nodemailer');
 
 
@@ -29,7 +29,7 @@ exports.dashboard_secretaria = async(req,res) =>{
         const log_atividade_encarregados = await log_atividades_encarregados();
         const info_dashboard = await info_dashboard_secretaria();
         //console.log(info_dashboard)
-        res.render("dashboard/dashboard-secretaria", { logs, email: user.email, encarregados, estudantes, comunicado, info_dashboard, contrato, log_atividade_encarregados});
+        res.render("dashboard/dashboard-secretaria", {logs, email: user.email, encarregados, estudantes, comunicado, contrato, log_atividade_encarregados});
     } catch (error) {
         console.error("Erro ao carregar a dashboard:", error);
         return res.redirect("/Telaerro?message=" + encodeURIComponent("Precisa fazer login para acassar esta tela."));

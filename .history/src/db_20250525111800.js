@@ -831,7 +831,7 @@ const info_dashboard_secretaria = async () =>{
     (SELECT COUNT(*) FROM documentos WHERE tipo = 'contrato') AS total_contratos,
     (SELECT COUNT(*) FROM documentos WHERE tipo = 'comunicado') AS total_documentos;
   `);
-  return result.rows[0];  // << pegar só o objeto, não o array
+  return result.rows;
 }
 
 module.exports = {
