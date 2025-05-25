@@ -1,4 +1,4 @@
-const { logEvent, buscar_role, findEmail, atualizar_logins_direcao, enviar_codigo, buscar_codigoOTP, deleteVerificationCode, saveVerificationCode, verifyVerificationCode} = require('../db');
+const { buscar_role, findEmail, atualizar_logins_direcao, enviar_codigo, buscar_codigoOTP, deleteVerificationCode, saveVerificationCode, verifyVerificationCode} = require('../db');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
@@ -93,9 +93,8 @@ exports.verificar_code = async (req, res) => {
 
         const estudante = null;
         const acao = 'login';
-        const detalhes = `O encarregado ${id} fez login com sucesso.`;
-        await logEvent(id,estudante, acao, detalhes)
-
+        const detalhes = `Usuário ${user.username} fez login com sucesso.`
+        await logEvent(id,)
         const authToken = jwt.sign({ email, role }, process.env.TOKEN_SECRET, { expiresIn: "30d" });
         res.cookie("token", authToken, { httpOnly: true, secure: true, maxAge: 30 * 24 * 60 * 60 * 1000 });
         res.clearCookie("tempToken");

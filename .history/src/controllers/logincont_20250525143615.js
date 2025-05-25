@@ -1,4 +1,4 @@
-const { logEvent, buscar_role, findEmail, atualizar_logins_direcao, enviar_codigo, buscar_codigoOTP, deleteVerificationCode, saveVerificationCode, verifyVerificationCode} = require('../db');
+const { buscar_role, findEmail, atualizar_logins_direcao, enviar_codigo, buscar_codigoOTP, deleteVerificationCode, saveVerificationCode, verifyVerificationCode} = require('../db');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
@@ -81,8 +81,7 @@ exports.verificar_code = async (req, res) => {
     try {
         const decoded = jwt.verify(tempToken, SECRET_KEY);
         const email = decoded.email;
-        const id = decoded.id;
-
+        const id = decoded.id
         const verificationResult = await verifyVerificationCode(email, codigo); 
         if (verificationResult.success === false) {
             return res.status(400).json({ message: verificationResult.message });
@@ -90,12 +89,7 @@ exports.verificar_code = async (req, res) => {
         //console.log("🟡 Resultado da verificação:", verificationResult);
         await deleteVerificationCode(email);
         const role = await buscar_role(email);
-
-        const estudante = null;
-        const acao = 'login';
-        const detalhes = `O encarregado ${id} fez login com sucesso.`;
-        await logEvent(id,estudante, acao, detalhes)
-
+        //await logEvent()
         const authToken = jwt.sign({ email, role }, process.env.TOKEN_SECRET, { expiresIn: "30d" });
         res.cookie("token", authToken, { httpOnly: true, secure: true, maxAge: 30 * 24 * 60 * 60 * 1000 });
         res.clearCookie("tempToken");
