@@ -3,7 +3,6 @@ const session = require('express-session');
 const express = require('express');
 const path = require('path');
 const pool = require('./src/db/connection');
-const pgSession = require('connect-pg-simple')(session);
 
 const app = express();
 
@@ -25,11 +24,7 @@ app.use(session({
   secret: 'sua_chave_secreta',
   resave: false,
   saveUninitialized: false,
-  cookie: {
-    secure: false, // true se usar HTTPS
-    maxAge: 1000 * 60 * 60 * 24, // 1 dia
-    sameSite: 'strict'
-  }
+  cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 dia
 }));
 
 // Rotas

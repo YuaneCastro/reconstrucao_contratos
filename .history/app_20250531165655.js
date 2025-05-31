@@ -25,11 +25,7 @@ app.use(session({
   secret: 'sua_chave_secreta',
   resave: false,
   saveUninitialized: false,
-  cookie: {
-    secure: false, // true se usar HTTPS
-    maxAge: 1000 * 60 * 60 * 24, // 1 dia
-    sameSite: 'strict'
-  }
+  cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 dia
 }));
 
 // Rotas
