@@ -73,7 +73,7 @@ exports.update_Student = async (req, res) => {
                 motivo: "Já existe um estudante com esse nome."
             });
         }
-        const {encarregado_id} = await atualizar_estudante(id, nome, classe, turma, curso);
+        const encarregado_id = await atualizar_estudante(id, nome, classe, turma, curso);
         await logEvent(encarregado_id, id, 'atualizar estudante',`As informações do estudante: ${id}, pertencente ao encarregado: ${encarregado_id}, foram atualizadas.`)
         return res.status(200).json({
             sucesso: true,
@@ -91,7 +91,7 @@ exports.update_encarregado = async (req, res) => {
     const { nome, email, telefone, id } = req.body;
     
     const resultado = await atualizarEncarregado(nome, email, telefone, id); // Chama o método para atualizar o encarregado
-    await logEvent(id, null, 'atualizar encarregado',`As informações do encarregado:${id}, foram atualizadas.`);
+    await logEvent(id,null , 'atualizar encarregado',`As informações do encarregado: ${id}, foram atualizadas.`)
 
     return res.status(200).json(resultado); // Retorna o resultado para o frontend
 };

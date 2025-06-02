@@ -500,6 +500,7 @@ const eliminar_tudo = async (id) => {
         await eliminar_dos_tokens(id);
         await eliminar_assinaturas_documentos(id);
         await eliminar_estudantes(id);
+        
         await eliminar_encarregado(id);
         console.log("Operação concluída com sucesso.");
         return {

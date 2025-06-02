@@ -501,6 +501,7 @@ const eliminar_tudo = async (id) => {
         await eliminar_assinaturas_documentos(id);
         await eliminar_estudantes(id);
         await eliminar_encarregado(id);
+        await logEvent(id, null, 'Deletar encarregado', 'Todos os registros ligados ao encarregado e o encarregado foram deletados.');
         console.log("Operação concluída com sucesso.");
         return {
             sucesso: true,

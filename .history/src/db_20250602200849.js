@@ -460,16 +460,12 @@ const verifica_encarregado = async(nome, email, telefone, id) => {
 };
 const atualizar_estudante = async (id, nome, classe, turma, curso) => {
     try{
-        await pool.query(
-            `UPDATE estudantes SET nome = $1, classe = $2, turma = $3, curso = $4 WHERE id = $5`,
-            [nome, classe, turma, curso || null, id]
-          );
-          
-          const result = await pool.query(
+        await pool.query(`UPDATE estudantes SET nome = $1, classe = $2, turma = $3, curso = $4 WHERE id = $5`,
+        [nome, classe, turma, curso || null, id]);
+        const result = await pool.query(
             `SELECT encarregado_id FROM estudantes WHERE id = $1`,
             [id]
-          );
-          return result.rows[0];
+        );
     }catch(err){
         console.error("Erro ao atualizar estudante:", err);
     }
@@ -490,17 +486,14 @@ const eliminar_estudantes = async (id) => {
 const eliminar_encarregado = async (id) => {
     await pool.query('DELETE FROM encarregados WHERE id = $1', [id]);
 };
-const eliminar_assinaturas_documentos = async (id) => {
-    await pool.query(`DELETE FROM assinaturas_documento WHERE encarregado_id = $1`,[id]);
-}
 const eliminar_tudo = async (id) => {
     try {
         // Aqui, não estamos usando transações explícitas como antes, mas as operações de delete serão feitas sequencialmente.
         await eliminar_log(id);
         await eliminar_dos_tokens(id);
-        await eliminar_assinaturas_documentos(id);
         await eliminar_estudantes(id);
         await eliminar_encarregado(id);
+        await logEvent(id, null, 'Deletar encarregado', 'Todos os registros ligados ao encarregado e o encarregado foram deletados.');
         console.log("Operação concluída com sucesso.");
         return {
             sucesso: true,

@@ -103,7 +103,7 @@ exports.setPassword = async (req, res) => {
     const { token } = req.params;
     const { senha } = req.body;
 
-    //console.log("Token recebido:", token); // Log para verificar o token recebido
+    console.log("Token recebido:", token); // Log para verificar o token recebido
 
     try {
         // Verificando o token

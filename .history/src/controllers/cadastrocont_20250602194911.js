@@ -103,7 +103,7 @@ exports.setPassword = async (req, res) => {
     const { token } = req.params;
     const { senha } = req.body;
 
-    //console.log("Token recebido:", token); // Log para verificar o token recebido
+    console.log("Token recebido:", token); // Log para verificar o token recebido
 
     try {
         // Verificando o token
@@ -114,7 +114,7 @@ exports.setPassword = async (req, res) => {
         }
 
         const { encarregado_id, expiracao } = tokenData;
-        //console.log("Token encontrado:", tokenData); // Log para verificar os dados do token
+        console.log("Token encontrado:", tokenData); // Log para verificar os dados do token
 
         // Verificando se o token expirou
         if (new Date().getTime() > new Date(expiracao).getTime()) {
@@ -131,7 +131,7 @@ exports.setPassword = async (req, res) => {
         // Deletando o token
         await deletarToken(encarregado_id);
         //console.log("Token deletado.");
-        await logEvent(encarregado_id, null, 'Redifinir senha', `A senha do encarregado ${encarregado_id} foi redifinida.`);
+        await logEvent(encarregado_id, null, 'Redifinir senha', ``);
         // Redirecionando para login
         res.redirect('/login');
     } catch (error) {
