@@ -98,17 +98,20 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('mensagem').style.color = "red";
     return; // Impede envio
   }
-  const hoje = new Date().toISOString().split('T')[0];
-  const dataNascimentoInput = document.getElementById("data_nascimento2");
+// Pega o valor do input
+const dataNascimento = document.getElementById('data_nascimento2').value;
+const hoje = new Date().toISOString().split('T')[0];
 
-  if (dataNascimentoInput) {
-    dataNascimentoInput.setAttribute("max", hoje);
-    dataNascimentoInput.addEventListener("input", function () {
-      if (this.value > hoje) {
-        this.value = hoje;
-      }
-    });
-  }
+if (!dataNascimento) {
+  document.getElementById('mensagem').textContent = "Informe a data de nascimento.";
+  document.getElementById('mensagem').style.color = "red";
+  return; // Impede envio
+}
+if (dataNascimento > hoje) {
+  document.getElementById('mensagem').textContent = "Data de nascimento não pode ser maior que hoje.";
+  document.getElementById('mensagem').style.color = "red";
+  return; // Impede envio
+}
 
 
   // Verifica se, para as classes 10ª, 11ª, 12ª ou 13ª, o curso foi selecionado

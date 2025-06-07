@@ -67,9 +67,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const classeSelecionada = document.getElementById("classe2").value;
         const curso = document.getElementById("curso2").value;
         const turma = document.getElementById("turma2").value;
+        const dataNascimento = document.getElementById("data_nascimento2").value;
+        const hoje = new Date().toISOString().split("T")[0];
 
        // Verifica se o nome está preenchido
-  if (!nome) {
+    if (!nome) {
     document.getElementById('mensagem').textContent = "Por favor, preencha o nome.";
     document.getElementById('mensagem').style.color = "red";
     return; // Impede envio
@@ -98,19 +100,18 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('mensagem').style.color = "red";
     return; // Impede envio
   }
-  const hoje = new Date().toISOString().split('T')[0];
-  const dataNascimentoInput = document.getElementById("data_nascimento2");
-
-  if (dataNascimentoInput) {
-    dataNascimentoInput.setAttribute("max", hoje);
-    dataNascimentoInput.addEventListener("input", function () {
-      if (this.value > hoje) {
-        this.value = hoje;
-      }
-    });
+  // Verifica se a data de nascimento foi preenchida
+  if (!dataNascimento) {
+    document.getElementById('mensagem').textContent = "Informe a data de nascimento.";
+    document.getElementById('mensagem').style.color = "red";
+    return; // Impede envio
   }
-
-
+  // Verifica se a data de nascimento não é maior que a data de hoje
+  if (dataNascimento > hoje) {
+    document.getElementById('mensagem').textContent = "Data de nascimento não pode ser maior que hoje.";
+    document.getElementById('mensagem').style.color = "red";
+    return; // Impede envio
+  }
   // Verifica se, para as classes 10ª, 11ª, 12ª ou 13ª, o curso foi selecionado
   if (["10ª Classe", "11ª Classe", "12ª Classe", "13ª Classe"].includes(classeSelecionada) && !curso) {
     document.getElementById('mensagem').textContent = `Por favor, selecione o curso para a ${classeSelecionada}.`;

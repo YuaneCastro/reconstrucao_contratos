@@ -103,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (dataNascimentoInput) {
     dataNascimentoInput.setAttribute("max", hoje);
+    // Impede digitar datas maiores enquanto digita ou cola
     dataNascimentoInput.addEventListener("input", function () {
       if (this.value > hoje) {
         this.value = hoje;

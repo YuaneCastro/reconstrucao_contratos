@@ -102,7 +102,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const dataNascimentoInput = document.getElementById("data_nascimento2");
 
   if (dataNascimentoInput) {
+    // Impede seleção maior no calendário
     dataNascimentoInput.setAttribute("max", hoje);
+    // Impede digitar datas maiores enquanto digita ou cola
     dataNascimentoInput.addEventListener("input", function () {
       if (this.value > hoje) {
         this.value = hoje;

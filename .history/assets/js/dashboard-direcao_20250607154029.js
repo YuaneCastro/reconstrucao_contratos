@@ -98,16 +98,31 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('mensagem').style.color = "red";
     return; // Impede envio
   }
-  const hoje = new Date().toISOString().split('T')[0];
-  const dataNascimentoInput = document.getElementById("data_nascimento2");
+  // Pega a data de hoje no formato 'YYYY-MM-DD'
+  document.addEventListener('DOMContentLoaded', () => {
+    const dataNascimentoInput = document.getElementById('data_nascimento2');
+    const hoje = new Date().toISOString().split('T')[0];
+    if (dataNascimentoInput) {
+      dataNascimentoInput.setAttribute('max', hoje);
+    }
+  });
+  
+    
+    if (!dataNascimento) {
+      document.getElementById('mensagem').textContent = "Informe a data de nascimento.";
+      document.getElementById('mensagem').style.color = "red";
+      return false; // Impede envio
+    }
 
-  if (dataNascimentoInput) {
-    dataNascimentoInput.setAttribute("max", hoje);
-    dataNascimentoInput.addEventListener("input", function () {
-      if (this.value > hoje) {
-        this.value = hoje;
-      }
-    });
+    if (dataNascimento > hoje) {
+      document.getElementById('mensagem').textContent = "Data de nascimento não pode ser maior que hoje.";
+      document.getElementById('mensagem').style.color = "red";
+      return false; // Impede envio
+    }
+
+    document.getElementById('mensagem').textContent = "Data válida!";
+    document.getElementById('mensagem').style.color = "green";
+    return true;
   }
 
 

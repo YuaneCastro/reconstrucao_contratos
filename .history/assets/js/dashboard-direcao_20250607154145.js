@@ -98,16 +98,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('mensagem').style.color = "red";
     return; // Impede envio
   }
-  const hoje = new Date().toISOString().split('T')[0];
   const dataNascimentoInput = document.getElementById("data_nascimento2");
-
+  const hoje = new Date().toISOString().split('T')[0];
   if (dataNascimentoInput) {
     dataNascimentoInput.setAttribute("max", hoje);
-    dataNascimentoInput.addEventListener("input", function () {
-      if (this.value > hoje) {
-        this.value = hoje;
-      }
-    });
   }
 
 
