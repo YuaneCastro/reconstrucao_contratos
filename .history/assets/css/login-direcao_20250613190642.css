@@ -129,6 +129,9 @@ padding-top: 5vh;}
   margin-top: 5px;
   display: block;
 }
+.menu-toggle {
+  display: none;
+}
 /* RESPONSIVO */
 @media (max-width: 600px) {
   .login-container {

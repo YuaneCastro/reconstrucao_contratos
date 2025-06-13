@@ -452,15 +452,7 @@ table tbody tr td[colspan] {
 .responsive-overlay a:last-child {
   border-bottom: none;
 }
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: #bfa046;
-  margin: 10px;
-}
+
 
 
 @media (max-width: 768px) {
@@ -514,4 +506,5 @@ table tbody tr td[colspan] {
   .topbar .actions button:hover {
     background-color: red;
   }
+  
 }

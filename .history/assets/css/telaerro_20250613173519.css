@@ -1,0 +1,103 @@
+/* RESET + BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #003366, #336699);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* WRAPPER centralizado */
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  gap: 16px;
+}
+
+/* LOGO */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-img {
+  max-width: clamp(120px, 30vw, 200px);
+  width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+}
+
+/* CONTAINER */
+.login-container {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: clamp(32px, 5vw, 48px);
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-direction: column;
+}
+
+/* FORM ESTILO */
+.login-form {
+  width: 100%;
+  text-align: center;
+}
+
+.login-form h2 {
+  font-size: clamp(22px, 5vw, 28px);
+  font-weight: 600;
+  margin-bottom: 32px;
+  color: #1b1b1b;
+}
+
+/* ERRO */
+.error-message {
+  color: #ff4d4f;
+  font-size: 0.9rem;
+  margin-top: 8px;
+  display: block;
+  font-weight: 500;
+}
+
+/* BOTÃO */
+button {
+  margin-top: 24px;
+  width: 100%;
+  padding: clamp(12px, 3vw, 16px);
+  font-size: clamp(14px, 4vw, 16px);
+  background-color: #0078D4;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background-color: #005a9e;
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .login-container {
+    padding: clamp(24px, 5vw, 32px);
+    border-radius: 16px;
+  }
+}

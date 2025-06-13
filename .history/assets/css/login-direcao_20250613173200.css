@@ -129,21 +129,3 @@ padding-top: 5vh;}
   margin-top: 5px;
   display: block;
 }
-/* RESPONSIVO */
-@media (max-width: 600px) {
-  .login-container {
-    max-width: 100%;
-    padding: clamp(24px, 6vw, 32px);
-    border-radius: 16px;
-  }
-
-  .input-group input {
-    padding: 16px 8px 6px 8px;
-    font-size: 15px;
-  }
-
-  button {
-    padding: 12px;
-    font-size: 15px;
-  }
-}

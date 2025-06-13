@@ -94,7 +94,7 @@
   }
   .section h3 {
     margin-bottom: 10px;
-    color: #003366;
+    color: #004d3c;
   }
   .section p,
   .section ul {
@@ -417,101 +417,72 @@ table tbody tr td[colspan] {
 
 
 
-.responsive-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  background: linear-gradient(135deg, #003366, #336699);
-  z-index: 9999;
-  flex-direction: column;
-  padding: 20px;
-  gap: 20px;
-}
-
-.responsive-overlay button.close-btn {
-  background: none;
-  border: 2px solid #bfa046;
-  color: #bfa046;
-  padding: 8px 20px;
-  font-size: 18px;
-  cursor: pointer;
-  align-self: flex-end;
-}
-
-.responsive-overlay a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 22px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.responsive-overlay a:last-child {
-  border-bottom: none;
-}
 .menu-toggle {
   display: none;
   background: none;
   border: none;
   font-size: 28px;
   cursor: pointer;
-  color: #bfa046;
+  color: white;
   margin: 10px;
 }
 
+.responsive-menu {
+  display: none;
+  flex-direction: column;
+  background-color: #333;
+  padding: 10px;
+}
+
+.responsive-menu a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 0;
+}
 
 @media (max-width: 768px) {
   .sidebar {
     display: none;
   }
 
-  .main {
-    margin-left: 0;
-    width: 100%;
+  .menu-toggle {
+    display: block;
   }
 
   .topbar {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background: linear-gradient(135deg, #003366, #336699);
-    color: #bfa046; /* Dourado */
+    flex-direction: column;
+    align-items: flex-start;
   }
+}
 
-  .topbar .left-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .menu-toggle {
+/* Responsividade (opcional) 
+@media screen and (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
     display: block;
-    background: none;
-    border: none;
-    font-size: 28px;
-    cursor: pointer;
-    color: #bfa046; /* Dourado */
   }
 
-  .topbar .greeting {
-    color: #bfa046; /* Dourado */
+  thead {
+    display: none;
   }
 
-  .topbar .actions button {
-    margin-left: 10px;
-    background-color: #7c7b77;
-    color: #fff;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  tbody tr {
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
   }
 
-  .topbar .actions button:hover {
-    background-color: red;
+  tbody td {
+    position: relative;
+    padding-left: 50%;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 16px;
+    font-weight: bold;
+    color: #666;
   }
 }

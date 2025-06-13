@@ -133,7 +133,12 @@ async function handleAssinarContrato(button) {
 }
 
 function toggleMenu() {
-  const overlay = document.getElementById('menuOverlay');
-  overlay.style.display = (overlay.style.display === 'flex') ? 'none' : 'flex';
+  const menu = document.getElementById("fullscreenMenu");
+  if (menu.style.display === "flex") {
+    menu.style.display = "none";
+    document.body.style.overflow = "auto"; // libera scroll
+  } else {
+    menu.style.display = "flex";
+    document.body.style.overflow = "hidden"; // trava scroll
+  }
 }
-

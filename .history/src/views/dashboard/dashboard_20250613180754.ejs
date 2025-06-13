@@ -32,10 +32,10 @@
 
     <!-- CONTEÚDO PRINCIPAL -->
     <main class="main">
+      <!-- BOTÃO MENU RESPONSIVO -->
 
   <!-- MENU RESPONSIVO -->
-  <div id="menuOverlay" class="responsive-overlay">
-    <button class="close-btn" onclick="toggleMenu()">✖ Fechar</button>
+  <div id="responsiveMenu" class="responsive-menu">
     <a href="#" onclick="showSection('dashboard'); toggleMenu()">DASHBOARD</a>
     <a href="#" onclick="showSection('estudantes'); toggleMenu()">ESTUDANTES</a>
     <a href="#" onclick="showSection('contratos'); toggleMenu()">DOCUMENTOS</a>
@@ -44,8 +44,7 @@
   </div>
       <!-- TOPBAR -->
       <div class="topbar">
-        <!-- BOTÃO MENU RESPONSIVO -->
-        <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+        
         <div class="greeting">Olá, <strong><%= nome %></strong>!</div>
         <div class="actions">
           <button id="logout-button" onclick="informar()">Sair</button>

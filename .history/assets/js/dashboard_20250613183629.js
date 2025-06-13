@@ -133,7 +133,9 @@ async function handleAssinarContrato(button) {
 }
 
 function toggleMenu() {
-  const overlay = document.getElementById('menuOverlay');
-  overlay.style.display = (overlay.style.display === 'flex') ? 'none' : 'flex';
+  const menu = document.getElementById("responsiveMenu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
 }
-
+function closeMenuOverlay() {
+  document.getElementById("menuOverlay").style.display = "none";
+}

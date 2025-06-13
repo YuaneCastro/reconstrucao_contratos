@@ -135,16 +135,3 @@ button:hover {
   display: block;
 }
 
-/* RESPONSIVO */
-@media (max-width: 550px) {
-  .login-container {
-    max-width: 100%;
-    padding: 32px 20px;
-    border-radius: 16px;
-  }
-
-  .logo-img {
-    max-width: 160px;
-    margin-bottom: 16px;
-  }
-}
