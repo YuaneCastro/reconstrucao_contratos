@@ -283,41 +283,13 @@
             </div>
         </div>
         <div id="comunicados" class="section">
-            <div class="container">
-                <h2>Gestão de comunicados</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>TÍTULO</th>
-                        <th>DESCRIÇÃO</th>
-                        <th>DATA DE EMISSÃO</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% if(comunicado.length > 0){ %>
-                        <% comunicado.forEach(comunic =>{  %>
-                            <tr data-id="<%= comunic.id %>" onclick="mostrarAssociados(this)">
-                                <td><%= comunic.id %></td>
-                                <td><%= comunic.titulo %></td>
-                                <td><%= comunic.descricao %></td>
-                                <td><%= new Date(comunic.data_emissao).toISOString().split('T')[0] %></td>
-                            </tr>
-                        <% });  %>   
-                    <% }else{ %>
-                        <tr>
-                            <td colspan="8">Nenhum comunicado encontrado.</td>
-                        </tr>
-                    <% } %>
-                </tbody>
-            </table>
-            </div>
+            <div class="container"></div>
+            
         </div>
 
 
         <div id="associados" class="section">
-            <div class="container">
-                <h2>Encarregados Associados</h2>
+            <h2>Encarregados Associados</h2>
             <table>
                 <thead>
                     <tr>
@@ -332,7 +304,6 @@
                 <tbody id="associados-body">
                 </tbody>
             </table> 
-            </div>
         </div>
 
     </div>

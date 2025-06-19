@@ -116,34 +116,7 @@
               </div>
         </div>  
         <div id="logs_ativdades_encarregados" class="section">
-            <div class="container">
-                <h2>Actividades dos encarregados</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>ENCARREGADO</th>
-                        <th>ESTUDANTE</th>
-                        <th>AÇÃO</th>
-                        <th>DETALHES</th>
-                        <th>DATA</th>
-                    </tr>
-                </thead>
-                <% log_atividade_encarregados.sort((a, b) => b.id - a.id); %>
-                <tbody>
-                    <% log_atividade_encarregados.forEach(log => { %>
-                        <tr>
-                            <td><%= log.id %></td>
-                            <td><%= log.encarregado_id %></td>
-                            <td><%= log.estudante_id %></td>
-                            <td><%= log.acao %></td>
-                            <td><%= log.detalhes %></td>
-                            <td><%= log.data_hora ? new Date(log.data_hora).toLocaleString() : '-' %></td>
-                        </tr>
-                    <% }) %>
-                </tbody>
-            </table>
-            </div>
+            <div class="container"></div>
         </div>    
 
 
@@ -283,8 +256,7 @@
             </div>
         </div>
         <div id="comunicados" class="section">
-            <div class="container">
-                <h2>Gestão de comunicados</h2>
+            <h2>Gestão de comunicados</h2>
             <table>
                 <thead>
                     <tr>
@@ -311,13 +283,11 @@
                     <% } %>
                 </tbody>
             </table>
-            </div>
         </div>
 
 
         <div id="associados" class="section">
-            <div class="container">
-                <h2>Encarregados Associados</h2>
+            <h2>Encarregados Associados</h2>
             <table>
                 <thead>
                     <tr>
@@ -332,7 +302,6 @@
                 <tbody id="associados-body">
                 </tbody>
             </table> 
-            </div>
         </div>
 
     </div>

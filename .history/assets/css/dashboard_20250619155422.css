@@ -448,7 +448,7 @@ table tbody tr td[colspan] {
   font-size: 22px;
   padding: 10px 0;
   color: #f0c97d;
-  border-bottom: 1px solid #bfa046;
+    border-bottom: 1px solid #bfa046;
 }
 
 .responsive-overlay a:last-child {

@@ -1,5 +1,5 @@
 // -------------logout-----------
-function informar(){
+function {
     const a = window.confirm('Pretende realmente fazer logout ?');
     if(a == true){
         document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

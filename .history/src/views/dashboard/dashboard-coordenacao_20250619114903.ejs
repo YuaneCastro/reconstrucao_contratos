@@ -5,41 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel de Gestão</title>
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/dashboard-coordenacao.css">
+    <link rel="stylesheet" href="/assets/css/dashboard-direcao.css">
 </head>
 <body>
     <!-- Top Bar -->
     <div class="top-bar">
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-        <div class="top-left">
-            <p class="clickable" onclick="abrirNovoDocumento()">Novo Documento</p>
-          </div>
-          <div class="top-right">
-            <p class="clickable" onclick="showSection('logs_ativdades_encarregados')">Atividades Encarregados</p>
-          </div>
-        <button class="logout-button"  onclick="informar()">Sair</button>
+        <button class="logout-button" onclick="informar()">Sair</button>
+        <p class="clickable" onclick="abrirNovoDocumento()">Novo Documento</p>
+        <p class="clickable" onclick="showSection('logs_ativdades_encarregados')">Atividades Encarregados </p>
     </div>
 
-    <div id="menuOverlay" class="responsive-overlay">
-        <button class="close-btn" onclick="toggleMenu()">✖ Fechar</button>
-      
-        <a href="#" class="menu-action" onclick="showSection('dashboard'); toggleMenu()">📊 Dashboard</a>
-      
-        <div class="menu-group">
-          <p class="menu-title">Usuários</p>
-          <a href="#" class="menu-action" onclick="showSection('logs_ativdades_encarregados'); toggleMenu()">📝 Atividades Encarregados</a>
-          <a href="#" class="menu-action" onclick="showSection('students'); toggleMenu()">👩‍🎓 Estudantes</a>
-          <a href="#" class="menu-action" onclick="showSection('guardians'); toggleMenu()">👨‍👧 Encarregados</a>
-        </div>
-      
-        <div class="menu-group">
-          <p class="menu-title">Documentos</p>
-          <a href="#" class="menu-action" onclick="abrirNovoDocumento(); toggleMenu()">📝 Novo Documento</a>
-          <a href="#" class="menu-action" onclick="showSection('contracts'); toggleMenu()">📃 Contratos</a>
-          <a href="#" class="menu-action" onclick="showSection('comunicados'); toggleMenu()">📢 Comunicados</a>
-        </div>
-      </div>
-      
     <!-- Sidebar -->
     <div class="sidebar">
         <ul>
@@ -116,8 +92,7 @@
               </div>
         </div>  
         <div id="logs_ativdades_encarregados" class="section">
-            <div class="container">
-                <h2>Actividades dos encarregados</h2>
+            <h1>Actividades dos encarregados</h1>
             <table>
                 <thead>
                     <tr>
@@ -143,7 +118,6 @@
                     <% }) %>
                 </tbody>
             </table>
-            </div>
         </div>    
 
 
@@ -252,8 +226,7 @@
 
 
         <div id="contracts" class="section">
-            <div class="container">
-                <h2>Gestão de Contratos</h2>
+            <h2>Gestão de Contratos</h2>
             <table>
                 <thead>
                     <tr>
@@ -280,11 +253,9 @@
                     <% } %>
                 </tbody>
             </table>
-            </div>
         </div>
         <div id="comunicados" class="section">
-            <div class="container">
-                <h2>Gestão de comunicados</h2>
+            <h2>Gestão de comunicados</h2>
             <table>
                 <thead>
                     <tr>
@@ -311,13 +282,11 @@
                     <% } %>
                 </tbody>
             </table>
-            </div>
         </div>
 
 
         <div id="associados" class="section">
-            <div class="container">
-                <h2>Encarregados Associados</h2>
+            <h2>Encarregados Associados</h2>
             <table>
                 <thead>
                     <tr>
@@ -332,7 +301,6 @@
                 <tbody id="associados-body">
                 </tbody>
             </table> 
-            </div>
         </div>
 
     </div>
